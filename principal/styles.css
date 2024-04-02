@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "raleway";
+    font-style: normal;
+    font-weight: 400;
+    src: url('font/Raleway-VariableFont_wght.ttf');
+}
+
+h1{
+    font-family: 'raleway';
+    color: #F57D0D;
+}
