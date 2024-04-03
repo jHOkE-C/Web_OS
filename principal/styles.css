@@ -12,14 +12,30 @@
 }
 body{
     background-color: #B4B7A2;
+    overflow-x: hidden;
+    width: calc(100vw - (100vw - 100%)); /* Esto tendrá en cuenta el ancho de la barra de desplazamiento */
 }
+/* Para navegadores WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 17px; /* Ancho de la barra de desplazamiento */
+    background-color: #C7CAB6; /* Color de fondo de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #636363;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888; /* Color de la barra de desplazamiento al pasar el mouse */
+}
+
 h1,H2{
     display: inline;
     padding: 25px;
     font-family: 'ralewayB';
     color: #F57D0D;
 }
-h3,h4{
+h4{
     display: inline;
     padding-left: 8px;
     font-family: 'ralewayB';
@@ -46,8 +62,8 @@ a#a_especial{
     display: flex;
     background: #C7CAB6;
     border: 1px solid #636363;
-    width: 1340px;
-    height: 60px;
+    width: calc(97vw);
+    height: calc(9vh);
     align-items: center;
 }
 #logo{
@@ -74,8 +90,8 @@ a#a_especial:hover{
 
 /*-------------------SECTION------------------------*/
 #d_principal{
-    width: 1340px;
-    height: 200px;
+    width: calc(97vw);
+    height: calc(30vh);
     align-items: center;
     align-content: center;
 }
@@ -86,17 +102,63 @@ h1.titleMain{
     padding-bottom: 0px;
 }
 
-p{
+p.pTitle{
     font-family: 'raleway';
     color: #636363;
     padding-left: 25px;
 }
 .divImg{
     display: flex;
-    width: 1340px;
-    height: 200px;
+    justify-content: center;
+    align-items: center;
+    width: calc(97vw);
+    height: calc(50vh);
 }
-.paraCentrarImg{
-    width: 400px;
-    height: 200px;
+.divFlecha{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(97vw);
+}
+.paraCentrarFlecha{
+    width: 660px;
+}
+/*-------------------FOOOTER------------------------*/
+.divFinal{
+    display: block;
+    gap: 50px;
+    width: calc(97vw);
+    height: calc(90vh);
+}
+.reco{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+}
+.blockReco{
+    background-color: #C7CAB6;
+    border: 1px solid #636363;
+    padding: 0px;
+    text-align: center;
+    width: 15%;
+    height: 90%;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+h3.textReco{
+    font-family: 'raleway';
+    color: #F57D0D;
+}
+p.pReco{
+    font-family: 'raleway';
+    color: #636363;
+}
+.imgReco{
+    padding-top: 20px;
 }
