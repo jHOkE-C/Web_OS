@@ -4,38 +4,38 @@
     font-weight: 400;
     src: url('font/Raleway-VariableFont_wght.ttf');
 }
-
-h1{
+body{
+    background-color: #B4B7A2
+}
+h1,H2,h3,h4{
+    padding: 25px;
     font-family: 'raleway';
     color: #F57D0D;
 }
+a{ 
+    color: #636363;
+    font-family: 'raleway';
+    text-decoration: none;
+}
 .headerCss{
+    display: flex;
     background: #C7CAB6;
-    border: 1px solid whitesmoke;
+    border: 1px solid #636363;
     width: 1340px;
-    height: 50px;
-    
+    height: 60px;
+    align-items: center;
 }
 #logo{
-    width: 900px;
+    align-items:center;
+    align-content: center;
+    width: 60%;
     height: 50%;
 }
 #navegation{
-    width: 900px;
+    display: flex;
+    width: 40%;
     height: 50%;
-}
-
-
-
-/*prueba*/
-.border{
-    width: 1340px;
-    height: 60px;
-    align-content: center;
-    border: 1px solid #F57D0D
-}
-.borderPorcentaje{
-    width: 50%;
-    height: 60%;
-    background-color: black;
+    gap: 95px;
+    align-items:center;
+    align-content: center   ;
 }
