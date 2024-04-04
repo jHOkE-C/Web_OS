@@ -28,14 +28,7 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background-color: #888; /* Color de la barra de desplazamiento al pasar el mouse */
 }
-
-h1,H2{
-    display: inline;
-    padding: 25px;
-    font-family: 'ralewayB';
-    color: #F57D0D;
-}
-h4{
+h4.h4_logo{
     display: inline;
     padding-left: 8px;
     font-family: 'ralewayB';
@@ -97,6 +90,8 @@ a#a_especial:hover{
 }
 h1.titleMain{
     font-family: 'ralewayB';
+    display: inline;
+    color: #F57D0D;
     font-size: 50px;
     padding-left: 25px;
     padding-bottom: 0px;
@@ -124,6 +119,13 @@ p.pTitle{
     width: 660px;
 }
 /*-------------------FOOOTER------------------------*/
+h1.h1Preg{
+    color: #636363;
+    padding: 0PX;
+}
+h1.h1PregNaranja{
+    padding: 0px;
+}
 .divFinal{
     display: block;
     gap: 50px;
@@ -156,9 +158,15 @@ h3.textReco{
     color: #F57D0D;
 }
 p.pReco{
+    padding: 5px;
     font-family: 'raleway';
     color: #636363;
 }
 .imgReco{
     padding-top: 20px;
+}
+#des{
+    display: flex;
+    align-content: center;
+    justify-content: center ;
 }
