@@ -1,15 +1,3 @@
-@font-face {
-    font-family: "raleway";
-    font-style: normal;
-    font-weight: 450;
-    src: url('/principal/font/Raleway-VariableFont_wght.ttf');
-}
-@font-face {
-    font-family: "ralewayB";
-    font-style: normal;
-    font-weight: bold;
-    src: url('/principal/font/Raleway-VariableFont_wght.ttf');
-}
 /*-------------------SECTION------------------------*/
 #d_principal{
     width: calc(97vw);

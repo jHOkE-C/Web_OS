@@ -7,6 +7,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "raleway";
+  font-style: normal;
+  font-weight: 450;
+  src: url('font/Raleway-VariableFont_wght.ttf');
+}
+@font-face {
+  font-family: "ralewayB";
+  font-style: normal;
+  font-weight: bold;
+  src: url('font/Raleway-VariableFont_wght.ttf');
+}
+
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
