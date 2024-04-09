@@ -17,7 +17,10 @@ function header() {
                 <Link to="/">Inicio</Link>
                 <Link to="/Nosotros">Nosotros</Link>
                 <Link to="/Contacto">Contacto</Link>
-                <Link to="/Login"id="a_especial">Login</Link>
+                <div id="botones">
+                    <Link to="/Login"className="buttonN">Iniciar</Link>
+                    <Link className="buttonN"> Unete </Link>
+                </div>
             </div>
         </header>
     </HeaderContainer>
@@ -62,14 +65,22 @@ const HeaderContainer = styled.nav`
     #logo{
         align-items:center;
         align-content: center;
-        width: 60%;
+        width: 80%;
         height: 50%;
     }
     #navegation{
         display: flex;
         width: 40%;
         height: 50%;
-        gap: 95px;
+        gap: 40px;
+        align-items:center;
+        align-content: center   ;
+    }
+    #botones{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        gap: 10px;
         align-items:center;
         align-content: center   ;
     }
@@ -80,4 +91,28 @@ const HeaderContainer = styled.nav`
     a#a_especial:hover{
         color: #636363;
     }
+    .buttonN{
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      height: auto;/*(para que tenga fijo el height)*/
+      background-color: #F57D0D;
+      color: white;
+      font-family: 'raleway';
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border: none;
+  }
+  .buttonN:hover{
+      background-color:#636363;
+      color: #F57D0D;
+      transition-duration: 200ms;
+  }
+  .buttonN:active{
+      border: #F57D0D 5px;
+  }
 `
