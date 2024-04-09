@@ -77,7 +77,8 @@ const HomeContainer = styled.nav`
   }
 
   p.pTitle{
-      font-family: 'raleway';
+
+      font-family: 'nunitoN';
       color: #636363;
       padding-left: 25px;
   }
@@ -144,11 +145,12 @@ const HomeContainer = styled.nav`
       padding: 10px;
   }
   p.pReco{
-      padding-left: 20px;
-      padding-right: 20px;
-      font-family: 'raleway';
-      text-align: justify;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-family: 'nunitoN';
       color: #636363;
+      text-align: justify;
+      font-size: 0.9rem;
   }
   .imgReco{
       padding-top: 20px;
@@ -176,12 +178,12 @@ const HomeContainer = styled.nav`
       -o-border-radius: 5px;
       border: none;
   }
-  button:hover{
+  .buttonN:hover{
       background-color:#636363;
       color: #F57D0D;
       transition-duration: 200ms;
   }
-  button:active{
+  .buttonN:active{
       border: #F57D0D 5px;
   }
 `

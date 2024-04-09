@@ -1,8 +1,8 @@
-import React from 'react'
-
+import React from 'react';
+import Form_login_cli from '../components/form_login_client'
 function Login() {
   return (
-    <div>Login</div>
+    <Form_login_cli/>
   )
 }
 

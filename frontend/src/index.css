@@ -19,6 +19,12 @@ body {
   font-weight: bold;
   src: url('font/Raleway-VariableFont_wght.ttf');
 }
+@font-face {
+  font-family: "nunitoN";
+  font-style: normal;
+  font-weight:500;
+  src: url('font/Nunito-VariableFont_wght.ttf');
+}
 /* Para navegadores WebKit (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 17px; /* Ancho de la barra de desplazamiento */
