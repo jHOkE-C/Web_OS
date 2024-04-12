@@ -1,9 +1,36 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import Google from '../img/google.jpg'
 import Facebook from '../img/facebook.png'
-function form_login_client() {
+function Form_login_client() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          correo: email,
+          contrasena: password,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      setMessage(data.mensaje);
+
+    };
+    
+
+
+
   return (
     <Login_container_client>
         <div id='cuadro_login'>
@@ -14,11 +41,11 @@ function form_login_client() {
                 <h1 class="titleMain">I</h1>
                 <h1 class="titleMain">N</h1>
             </div>
-            <form action="" id='form_login_c'>
+            <form action="" id='form_login_c' onSubmit={handleSubmit}>
                 <label>Email</label>
-                <input type="email" placeholder='Email' className='input_l' required />
+                <input type="email" placeholder='Email' className='input_l' value={email} onChange={(e) => setEmail(e.target.value)} required />
                 <label>Password</label>
-                <input type="password" placeholder='Passworrd' className='input_l' required/>
+                <input type="password" placeholder='Passworrd' className='input_l' value={password} onChange={(e) => setPassword(e.target.value)} required/>
                 <Link to='www.google.com'>olvidaste tu Contraseña?</Link>
                 <br />
                 <button type='submit' className='buttonN'>Iniciar Sesion</button>
@@ -32,7 +59,7 @@ function form_login_client() {
   )
 }
 
-export default form_login_client
+export default Form_login_client
 
 const Login_container_client = styled.nav`
     width: 100vw;
