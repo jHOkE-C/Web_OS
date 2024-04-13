@@ -5,8 +5,11 @@ import Flecha from '../img/flechaAbajo.png';
 import Ruta from '../img/ruta.png';
 import Escudo from '../img/escudo.png';
 import styled from 'styled-components'
+import Header from '../components/header'
 function home() {
   return (
+    <div>
+    <Header/>
     <HomeContainer>
       <section>
           <div id="d_principal">
@@ -55,6 +58,7 @@ function home() {
           </div>
       </section>
     </HomeContainer>
+    </div>
   );
 }
 

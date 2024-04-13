@@ -1,8 +1,11 @@
 import React from 'react'
-
+import Header from '../components/header'
 function nosotros() {
   return (
-    <div>nosotros</div>
+    <div>
+      <Header></Header>
+      nosotros
+    </div>
   )
 }
 

@@ -67,6 +67,7 @@ const Login_container_client = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
+    
     .buttonI{
         background-color: white;
         border: none;
@@ -105,9 +106,11 @@ const Login_container_client = styled.nav`
     }
     #cuadro_login{
         background-color: #C7CAB6;
-        padding: 5%;
-        width: 18rem;
-        height: 23rem;
+        padding: 4em;
+        width: 20%;
+        height: 70%;
+        min-width: 250px;
+        min-height: 350px;
         display: block;
         border-radius: 40px;
         align-items: center;
@@ -127,12 +130,14 @@ const Login_container_client = styled.nav`
       color: #F57D0D;
       padding-left: 25px;
       padding-bottom: 0px;
+      font-size: calc(1.2vw + 1em);
     }
     h1.title_especial{
         font-family: 'ralewayB';
       display: inline;
       color: #F57D0D;
       padding-bottom: 0px;
+      font-size: calc(1.2vw + 1em);
     }
     #form_login_c{
         display: block;

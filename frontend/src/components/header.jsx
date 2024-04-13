@@ -14,9 +14,9 @@ function header() {
                 <h4 class="h4_logo">A</h4>
             </div>
             <div id="navegation">
-                <Link to="/">Inicio</Link>
-                <Link to="/Nosotros">Nosotros</Link>
-                <Link to="/Contacto">Contacto</Link>
+                <Link to="/" className='linksHeader'>Inicio</Link>
+                <Link to="/Nosotros" className='linksHeader'>Nosotros</Link>
+                <Link to="/Contacto" className='linksHeader'>Contacto</Link>
                 <div id="botones">
                     <Link to="/Login"className="buttonN">Iniciar</Link>
                     <Link className="buttonN"> Unete </Link>
@@ -30,17 +30,24 @@ function header() {
 export default header
 
 const HeaderContainer = styled.nav`
+    width: calc(100vw);
+    height: calc(9vh);
+    .linksHeader{
+        font-size: calc(0.09 vw + 1em);
+    }
     h4.h4_logo{
         display: inline;
         padding-left: 8px;
         font-family: 'ralewayB';
         color: #F57D0D;
+        font-size: calc(0.3vw + 1em);
     }
     h4#h4_especial{
         display: inline;
         padding-left: 30px;
         font-family: 'ralewayB';
         color: #F57D0D;
+        font-size: calc(0.3vw + 1em);
     }
     a{
         color: #636363;
@@ -57,8 +64,8 @@ const HeaderContainer = styled.nav`
         display: flex;
         background: #C7CAB6;
         border: 1px solid #636363;
-        width: calc(97vw);
-        height: calc(9vh);
+        width: 97%;
+        height: 100%;
         align-items: center;
         margin: 1%;
     }
@@ -72,7 +79,7 @@ const HeaderContainer = styled.nav`
         display: flex;
         width: 40%;
         height: 50%;
-        gap: 40px;
+        gap: calc(2vw + 1em);;
         align-items:center;
         align-content: center   ;
     }
@@ -106,6 +113,7 @@ const HeaderContainer = styled.nav`
       -ms-border-radius: 5px;
       -o-border-radius: 5px;
       border: none;
+      font-size: calc(0.08vw + 1em);
   }
   .buttonN:hover{
       background-color:#636363;
