@@ -47,3 +47,29 @@ body{
   overflow-x: hidden;
   width: calc(100vw - (100vw - 100%)); /* Esto tendrá en cuenta el ancho de la barra de desplazamiento */
 }
+
+.buttonN{
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  height: auto;/*(para que tenga fijo el height)*/
+  background-color: #F57D0D;
+  color: white;
+  font-family: 'raleway';
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border: none;
+  font-size: calc(0.08vw + 1em);
+}
+.buttonN:hover{
+  background-color:#636363;
+  color: #F57D0D;
+  transition-duration: 200ms;
+}
+.buttonN:active{
+  border: #F57D0D 5px;
+}

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Google from '../img/google.jpg'
 import Facebook from '../img/facebook.png'
 function Form_login_client() {
@@ -8,6 +8,7 @@ function Form_login_client() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    let navigate = useNavigate();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -25,7 +26,10 @@ function Form_login_client() {
       const data = await response.json();
       console.log(data);
       setMessage(data.mensaje);
-
+      if(data == 'Inicio de sesion exitoso'){
+        navigate('InicioPadre', { replace: true }) 
+        // Aquí ponemos replace:true para reemplazar la ruta actual con la tuya, pues si usaramos el navigate por sí solo, pushearía la ruta por encima de la otra
+      }
     };
     
 
