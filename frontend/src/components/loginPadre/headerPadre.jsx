@@ -17,7 +17,7 @@ function headerPadre() {
           <Link to="/" className='linksHeader'>Inicio</Link>
           <Link to="/Nosotros" className='linksHeader'>Nosotros</Link>
           <Link to="/Contacto" className='linksHeader'>Contacto</Link>
-          <Link to="/ListaDeHijos" className='linksHeader'>Lista de Hijos</Link>
+          <Link to="/FormHijos" className='linksHeader'>Lista de Hijos</Link>
           <Link to="/Perfil" className="buttonN">Perfil</Link>
         </div>
       </header>
@@ -50,7 +50,6 @@ const HeaderPadreContainer = styled.nav`
     display: inline;
   }
   #navegation{
-    width: 1000px;
     background-color: #F57D0D;
     display: inline;
   }
@@ -70,5 +69,4 @@ const HeaderPadreContainer = styled.nav`
     text-decoration: none;
     color: #636363;
   }
-  
 `
