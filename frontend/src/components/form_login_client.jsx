@@ -15,6 +15,7 @@ function Form_login_client() {
   
       const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -26,8 +27,9 @@ function Form_login_client() {
       const data = await response.json();
       console.log(data);
       setMessage(data.mensaje);
-      if(data == 'Inicio de sesion exitoso'){
-        navigate('InicioPadre', { replace: true }) 
+      if(data.mensaje === 'Inicio de sesion exitoso'){
+        console.log("exicto");
+        navigate('/inicioPadre', { replace: true }) 
         // Aquí ponemos replace:true para reemplazar la ruta actual con la tuya, pues si usaramos el navigate por sí solo, pushearía la ruta por encima de la otra
       }
     };

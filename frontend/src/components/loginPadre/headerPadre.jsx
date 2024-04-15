@@ -2,6 +2,26 @@ import React from 'react'
 import {Link}from 'react-router-dom'
 import styled from 'styled-components'
 function headerPadre() {
+
+  const salir = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/logout', {
+        method: 'GET',
+        credentials: 'include' // Incluir las credenciales para enviar la cookie de sesión al servidor
+      });
+      if (response.ok) {
+        // Si la solicitud es exitosa, redirige a la página de inicio
+        window.location.href = '/login';
+        console.log("salida Exitosas");
+      } else {
+        console.error('Error al cerrar sesión');
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+    }
+  };
+
+
   return (
     <HeaderPadreContainer>
       <header id="headerCss">  
@@ -19,6 +39,7 @@ function headerPadre() {
           <Link to="/Contacto" className='linksHeader'>Contacto</Link>
           <Link to="/FormHijos" className='linksHeader'>Lista de Hijos</Link>
           <Link to="/Perfil" className="buttonN">Perfil</Link>
+          <button className="buttonN" onClick={salir}>Salir</button>
         </div>
       </header>
     </HeaderPadreContainer>     
