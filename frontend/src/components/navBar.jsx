@@ -11,12 +11,12 @@ function navBar() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/Nosotros" element={<Nosotros/>}/>
-        <Route path="/Contacto" element={<Contacto/>}/>
+        <Route path="/Contacto" element={<FHijos/>}/>
         <Route path="/Login" element={<Login/>}/>
         <Route path="/InicioPadre" element={<IPadre/>}/>
         <Route path="/FormHijos" element={<FHijos/>}/>
       </Routes>
   )
 }
-
+//<Route path="/Contacto" element={<Contacto/>}/>
 export default navBar
