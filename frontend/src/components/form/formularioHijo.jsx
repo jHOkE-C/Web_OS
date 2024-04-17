@@ -14,7 +14,7 @@ const schema = yup
     lastName: yup.string('solo esta permitido letras')
             .required('Se requiere Apellidos'),
     num: yup.number('Solo numeros')
-          .required('Se requiere Apellidos')
+          .required('Se requiere Apellidos'),
   })
   .required()
 function FormularioHijo() {
@@ -29,7 +29,7 @@ function FormularioHijo() {
     if (!errors.firstName && !errors.lastName  && !errors.num) {
         Swal({
           icon: 'success',
-          text: 'Se creó el Curso correctamente',
+          text: 'Se agrego correctamente',
           buttons: ["ok", "ok uwu"]
         }).then(respuesta => {
           if (respuesta) {
@@ -49,49 +49,54 @@ function FormularioHijo() {
       
       <form onSubmit={handleSubmit(onSubmit)} id='formH'>
         <h1></h1>
-        <label>Nombre</label>
+        <label>Nombre:</label>
         <input
           className='inputT' 
           type="text" 
           maxLength={15}
           {...register("firstName")}
         />
-
-        <label >Apellido</label>
+        <p className='spanA'>{errors.firstName?.message}</p>
+        <label >Apellido:</label>
         <input 
           className='inputT' 
           type="text" 
           maxLength={20}
           {...register("lastName")}
         />
-          
+        <p className='spanA'>{errors.lastName?.message}</p>  
 
-        <label >Numero de Telefono</label>
+        <label >Numero de Telefono:</label>
         <input
           className='inputT' 
           type="text"
           {...register("num")}/>
-          
-        <label >Sexo</label>
+        <p className='spanA'>{errors.num?.message}</p>  
+        <label >Sexo:</label>
+        <select
+          className="select-customizado"
+          {...register("sex")}>
+            <option >--------</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
+        <p className='spanA'>{errors.sex?.message}</p>
+        <label>Nivel que Cursa el Estudiante:</label>
         <select 
-          id="language">
-            <option value="en">Masculino</option>
-            <option value="es">Femenino</option>
+          className="select-customizado"
+          {...register("level")}>
+            <option >--------</option>
+            <option value="S">Secundaria</option>
+            <option value="P">Primaria</option>
+            <option value="K">Kinder</option>
         </select>
-
-        <label>Nivel que Cursa el Estudiante</label>
-        <select id="language">
-            <option value="en">Secundaria</option>
-            <option value="es">Primaria</option>
-            <option value="es">Kinder</option>
-        </select>
-        <label  >DEPENDIENDO DE QUE NIVEL PONGA SALDRAN LOS COLEGIOS</label>
-        <select id="language">
-        </select>
-        <button type='submit'>Agregar Hijo</button>
+        <p className='spanA'>{errors.level?.message}</p>
+        <button type='submit' id='button100'>Agregar Hijo</button>
       </form>
+      
     </FormContainerH>
     </Fragment>
+    
   )
 }
 
@@ -102,17 +107,66 @@ const FormContainerH = styled.nav`
   display: flex;
   align-items: center;
   align-content: center;
-  justify-content: center;
-  background-color: aliceblue;
+  justify-content: center;  
   #formH{
     width: 25%;
     display: block;
-    background-color: red  ;
   }
   label{
+    color: #636363;
+    font-family: 'ralewayB';
     display: block;
   }
+  .spanA{
+    font-family: 'nunitoN';
+    color: red;
+    margin: 0px;
+    padding: 0px;
+    font-size: calc(0.01vw + 0.8em);
+  }
   .inputT{
-    
+    background-color: #f2f2f2;
+    border:none;
+    width: 100%;
+    height: 5vh;
+    border-radius: 0.7vh;
+    font-family: 'nunitoN';
+  } 
+  /* Estilo del select */
+.select-customizado {
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 0.7vh;
+  font-family: 'nunitoN';
+  font-size: calc(0.1vw + 0.8em);
+  width: 100%;
+  height: 6vh;
+  outline: none;
+}
+.select-customizado:active, .select-customizado:focus, .select-customizado:hover {
+  border-color: #636363;
+  box-shadow: 0 0 5px #f2f2f2;
+}
+.select-customizado option {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: #F57D0D;
+  font-family: 'nunitoN';
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 8px;
+}
+  #button100{
+    background-color: #F57D0D;
+    color: white;
+    font-family: 'ralewayB';
+    margin-top: 2vh;
+    border:none;
+    width: 100%;
+    height: 5vh;
+    border-radius: 0.7vh;
   }
 `

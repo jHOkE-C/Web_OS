@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Reloj from '../img/reloj.png';
 import MiniBus from '../img/minibus.png';
 import Flecha from '../img/flechaAbajo.png';
@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import Header from '../components/header'
 function home() {
   return (
-    <div>
+    <Fragment>
     <Header/>
     <HomeContainer>
       <section>
@@ -58,7 +58,7 @@ function home() {
           </div>
       </section>
     </HomeContainer>
-    </div>
+    </Fragment>
   );
 }
 
