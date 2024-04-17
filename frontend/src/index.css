@@ -27,7 +27,7 @@ body {
 }
 /* Para navegadores WebKit (Chrome, Safari) */
 ::-webkit-scrollbar {
-  width: 1%; /* Ancho de la barra de desplazamiento */
+  width: calc(0.7vw); /* Ancho de la barra de desplazamiento */
   background-color: #C7CAB6; /* Color de fondo de la barra de desplazamiento */
 }
 

@@ -5,8 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
+
 const schema = yup
   .object({
     firstName: yup.string('Solo esta permitido letras')
@@ -27,20 +28,18 @@ function FormularioHijo() {
   })
   const onSubmit = (data) => {
     if (!errors.firstName && !errors.lastName  && !errors.num) {
-        Swal({
+        Swal.fire({
           icon: 'success',
           text: 'Se agrego correctamente',
-          buttons: ["ok", "ok uwu"]
+          background:'#B4B7A2',
+          confirmButtonColor:'#F57D0D',
         }).then(respuesta => {
           if (respuesta) {
-            window.location.reload();
-          } else {
             window.location.reload();
           }
         });
     }  
     console.log(data)
-
   }
   return (
     <Fragment>
@@ -169,4 +168,40 @@ const FormContainerH = styled.nav`
     height: 5vh;
     border-radius: 0.7vh;
   }
+  .colorButton{
+    background-color: #F57D0D;
+  }
 `
+
+
+/*
+customClass: {
+  container: '...',
+  popup: '...',
+  header: '...',
+  title: '...',
+  closeButton: '...',
+  icon: '...',
+  image: '...',
+  content: '...',
+  input: '...',
+  inputLabel: '...',
+  validationMessage: '...',
+  actions: '...',
+  confirmButton: '...',
+  denyButton: '...',
+  cancelButton: '...',
+  loader: '...',
+  footer: '....'
+}
+Swal.fire({
+  customClass: {
+    confirmButton: 'swalBtnColor'
+  },
+  title: 'Comentario Agregado',
+  icon: 'success'
+});
+.swal2-styled.swal2-confirm.swalBtnColor {
+  color: #FFC900
+}
+*/

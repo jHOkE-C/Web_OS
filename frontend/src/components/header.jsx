@@ -3,26 +3,20 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom';
 function header() {
   return (
+    
     <HeaderContainer>
-        <header class="headerCss">  
-            <div id="logo">
-                <h4 id="h4_especial">A</h4>
-                <h4 class="h4_logo">S</h4>
-                <h4 class="h4_logo">T</h4>
-                <h4 class="h4_logo">R</h4>
-                <h4 class="h4_logo">E</h4>
-                <h4 class="h4_logo">A</h4>
-            </div>
-            <div id="navegation">
-                <Link to="/" className='linksHeader'>Inicio</Link>
-                <Link to="/Nosotros" className='linksHeader'>Nosotros</Link>
-                <Link to="/Contacto" className='linksHeader'>Contacto</Link>
-                <div id="botones">
-                    <Link to="/Login"className="buttonN">Iniciar</Link>
-                    <Link className="buttonN"> Unete </Link>
-                </div>
-            </div>
-        </header>
+        <header id="headerCss">  
+        <div id="logo">
+          <h1 id='h4_especial'>ASTREA</h1>
+        </div>
+        <div id="navegation">
+          <Link to="/" className='linksHeader'>Inicio</Link>
+          <Link to="/Nosotros" className='linksHeader'>Nosotros</Link>
+          <Link to="/Contacto" className='linksHeader'>Contacto</Link>
+          <Link to="/Login" className="buttonN">Iniciar</Link>
+          <Link className='buttonN' >Unete</Link>
+        </div>
+      </header>
     </HeaderContainer>
   )
 }
@@ -30,90 +24,64 @@ function header() {
 export default header
 
 const HeaderContainer = styled.nav`
-    width: calc(100vw);
+    display: flex;
+  width: calc(98vw);
+  height: calc(9vh);
+  min-height: 60px; 
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  background: #C7CAB6;
+  border: 1px solid #636363;
+  margin: 0.5em;
+  #headerCss{
+    width: calc(98vw);
     height: calc(9vh);
-    .linksHeader{
-        font-size: calc(0.09 vw + 1em);
-    }
-    h4.h4_logo{
-        display: inline;
-        padding-left: 8px;
-        font-family: 'ralewayB';
-        color: #F57D0D;
-        font-size: calc(0.3vw + 1em);
-    }
-    h4#h4_especial{
-        display: inline;
-        padding-left: 30px;
-        font-family: 'ralewayB';
-        color: #F57D0D;
-        font-size: calc(0.3vw + 1em);
-    }
-    a{
-        color: #636363;
-        font-family: 'raleway';
-        font-size:small;
-        text-decoration: none;
-    }
-    a#a_especial{
-        color: #F57D0D;
-        font-family: 'raleway';
-        text-decoration: none   ;
-    }
-    .headerCss{
-        display: flex;
-        background: #C7CAB6;
-        border: 1px solid #636363;
-        width: 97%;
-        height: 100%;
-        align-items: center;
-        margin: 1%;
-    }
-    #logo{
-        align-items:center;
-        align-content: center;
-        width: 80%;
-        height: 50%;
-    }
-    #navegation{
-        display: flex;
-        width: 40%;
-        height: 50%;
-        gap: calc(2vw + 1em);;
-        align-items:center;
-        align-content: center   ;
-    }
-    #botones{
-        display: flex;
-        width: 100%;
-        height: 100%;
-        gap: 10px;
-        align-items:center;
-        align-content: center   ;
-    }
-
-    a:hover{
-        color: #F57D0D;
-    }
-    a#a_especial:hover{
-        color: #636363;
-    }
-    .buttonN{
-      padding-left: 5%;
-      padding-right: 5%;
-      padding-top: 2%;
-      padding-bottom: 2%;
-      height: auto;/*(para que tenga fijo el height)*/
-      background-color: #F57D0D;
-      color: white;
-      font-family: 'raleway';
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      border: none;
-      font-size: calc(0.08vw + 1em);
+    align-content: center;
+    justify-content: center;
+  }
+  #logo{
+    display: inline;
+    margin-right: calc(48vw + .7em);
+  } 
+  #navegation{
+    display: inline;
+  }
+  #h4_especial{
+    letter-spacing: 1vw;
+    font-family: 'ralewayB';
+    font-weight: bold;
+    display: inline;
+    padding-left: calc(0.3vw + .5em);
+    color: #F57D0D;
+    font-size: calc(1vw + .4em);
+  }
+  .linksHeader{
+    margin-right: calc(3vw + .5em);
+    text-decoration: none;
+    font-family: 'nunitoN';
+    color: #636363;
+    font-size: calc(1vw + .1em);
+  }
+  .linksHeader:hover{
+    color: #F57D0D;
+  }
+  .buttonN{
+    text-decoration: none;
+    margin-left: calc(1vw + .1em);;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: #F57D0D;
+    color: white;
+    border-radius: calc(0.4vw + .1em);
+      -webkit-border-radius: calc(0.4vw + .1em);
+      -moz-border-radius: calc(0.4vw + .1em);
+      -ms-border-radius: calc(0.4vw + .1em);
+      -o-border-radius: calc(0.4vw + .1em);
+    font-family: 'ralewayB';
+    font-size: calc(1vw + .1em);
   }
   .buttonN:hover{
       background-color:#636363;
@@ -121,6 +89,6 @@ const HeaderContainer = styled.nav`
       transition-duration: 200ms;
   }
   .buttonN:active{
-      border: #F57D0D 5px;
+      border: #F57D0D 4px solid;
   }
 `
