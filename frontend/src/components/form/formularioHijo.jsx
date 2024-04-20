@@ -25,9 +25,9 @@ const schema = yup
             .required('Se requiere Apellidos'),
     sex: yup.mixed().oneOf(['M', 'F']),
     foto: yup.mixed()
-          .required("Required")
-          .test("is-valid-type", "Not a valid image type", value => isValidFileType(value && value.name.toLowerCase(), "image"))
-          .test("is-valid-size", "Max allowed size is 100KB", value => value && value.size <= MAX_FILE_SIZE),
+          .required("Requerido")
+          .test("Tipo de archivo valido", "No es un tipo de imagen valido", value => isValidFileType(value && value.name.toLowerCase(), "image"))
+          .test("Tipo de archivo valido", "Maximo tamaño 100KB", value => value && value.size <= MAX_FILE_SIZE),
     school: yup.string()
   })
   .required()
@@ -73,6 +73,7 @@ function FormularioHijo() {
       console.log(data)
     }
   }
+
   async function requestDataColegio(){
     const response = await fetch('http://localhost:5000/formularioHijo', {
         method: 'POST',
@@ -86,6 +87,7 @@ function FormularioHijo() {
       });
     const dataResponse = await response.json();
   }
+
   return (
     <Fragment>
     <HPadre/>
