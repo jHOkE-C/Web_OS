@@ -7,15 +7,14 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
-
 const schema = yup
   .object({
     firstName: yup.string('Solo esta permitido letras')
                 .required('Se requiere Nombres'),
     lastName: yup.string('solo esta permitido letras')
             .required('Se requiere Apellidos'),
-    num: yup.number('Solo numeros')
-          .required('Se requiere Apellidos'),
+    sex: yup.mixed().oneOf(['M', 'F']),
+    level: yup.mixed().oneOf(['P', 'S', 'K'])
   })
   .required()
 function FormularioHijo() {
@@ -90,6 +89,13 @@ function FormularioHijo() {
             <option value="K">Kinder</option>
         </select>
         <p className='spanA'>{errors.level?.message}</p>
+        <label htmlFor="">Colegio :</label>
+        <select 
+          className="select-customizado"
+          {...register("school")}>
+            <option >--------</option>
+        </select>
+        <p className='spanA'>{errors.school?.message}</p>
         <button type='submit' id='button100'>Agregar Hijo</button>
       </form>
       
@@ -167,6 +173,10 @@ const FormContainerH = styled.nav`
     width: 100%;
     height: 5vh;
     border-radius: 0.7vh;
+  }
+  #button100:hover{
+    background-color: #636363;
+    color: #F57D0D;
   }
   .colorButton{
     background-color: #F57D0D;
