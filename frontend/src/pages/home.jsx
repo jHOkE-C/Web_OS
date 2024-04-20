@@ -13,12 +13,7 @@ function home() {
     <HomeContainer>
       <section>
           <div id="d_principal">
-              <h1 class="titleMain">A</h1>
-              <h1 class="titleMain">S</h1>
-              <h1 class="titleMain">T</h1>
-              <h1 class="titleMain">R</h1>
-              <h1 class="titleMain">E</h1>
-              <h1 class="titleMain">A</h1>
+              <h1 class="titleMain">ASTREA</h1>
               <p class="pTitle">Tu trayecto seguro, nuestro compromiso constante: Transporte Escolar, Confiabilidad en Cada Viaje.</p>
           </div>
 
@@ -32,7 +27,7 @@ function home() {
 
           <div class="divFinal">
               <div>
-                  <h1 class="h1Preg">¿Por Que usar</h1>
+                  <h1 class="h1Preg">¿Por Que usar </h1>
                   <h1 class="h1PregNaranja">ASTREA?</h1>
               </div>
               <div class="reco">
@@ -72,19 +67,19 @@ const HomeContainer = styled.nav`
       align-content: center;
   }
   h1.titleMain{
-      font-family: 'ralewayB';
+      font-family: 'raleway';
       display: inline;
       color: #F57D0D;
-      font-size: 50px;
-      padding-left: 25px;
+      font-size: calc(3vw + .8em);
+      letter-spacing: 2vw;
+      padding-left: 0.5em;
       padding-bottom: 0px;
   }
 
   p.pTitle{
-
       font-family: 'nunitoN';
       color: #636363;
-      padding-left: 25px;
+      padding-left: 1.5em;
   }
   .divImg{
       display: flex;
@@ -99,26 +94,20 @@ const HomeContainer = styled.nav`
       align-items: center;
       width: calc(97vw);
   }
-  .paraCentrarFlecha{
-      width: 660px;
-  }
   /*-------------------FOOOTER------------------------*/
   h1.h1Preg{
       font-family: 'raleway';
       display: inline;
       color: #636363;
-      padding: 25PX;
+      padding-left: 2em;
   }
   h1.h1PregNaranja{
       font-family: 'raleway';
       display: inline;
       color: #F57D0D;
-      padding: 0px;
   }
   .divFinal{
-      display: inline;
       display: block;
-      gap: 50px;
       width: calc(97vw);
       height: calc(90vh);
   }
@@ -126,7 +115,7 @@ const HomeContainer = styled.nav`
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 40px;
+      gap: calc(2vw + .8em);
       width: 100%;
       height: 90%;
   }
@@ -166,21 +155,23 @@ const HomeContainer = styled.nav`
       height: 70px;
   }
   .buttonN{
-      margin: 1%;
-      padding-left: 30px;
-      padding-right: 30px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      height: 40px;/*(para que tenga fijo el height)*/
-      background-color: #F57D0D;
-      color: white;
-      font-family: 'raleway';
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      border: none;
+    border: none;
+    text-decoration: none;
+    height: 60%;
+    margin-left: calc(1vw + .1em);;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: #F57D0D;
+    color: white;
+    border-radius: calc(0.4vw + .1em);
+      -webkit-border-radius: calc(0.4vw + .1em);
+      -moz-border-radius: calc(0.4vw + .1em);
+      -ms-border-radius: calc(0.4vw + .1em);
+      -o-border-radius: calc(0.4vw + .1em);
+    font-family: 'ralewayB';
+    font-size: calc(1vw + .1em);
   }
   .buttonN:hover{
       background-color:#636363;
@@ -188,6 +179,6 @@ const HomeContainer = styled.nav`
       transition-duration: 200ms;
   }
   .buttonN:active{
-      border: #F57D0D 5px;
+      border: #F57D0D 4px solid;
   }
 `

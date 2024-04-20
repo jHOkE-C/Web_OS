@@ -44,7 +44,6 @@ code {
 }
 body{
   background-color: #B4B7A2;
-  overflow-x: hidden;
   width: calc(100vw - (100vw - 100%)); /* Esto tendrá en cuenta el ancho de la barra de desplazamiento */
 }
 
