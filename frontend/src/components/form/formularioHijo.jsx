@@ -7,14 +7,28 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
+
+
+
+const MAX_FILE_SIZE = 102400; //100KB
+
+const validFileExtensions = { image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
+
+function isValidFileType(fileName, fileType) {
+  return fileName && validFileExtensions[fileType].indexOf(fileName.split('.').pop()) > -1;
+}
 const schema = yup
   .object({
     firstName: yup.string('Solo esta permitido letras')
-                .required('Se requiere Nombres'),
+              .required('Se requiere Nombres'),
     lastName: yup.string('solo esta permitido letras')
             .required('Se requiere Apellidos'),
     sex: yup.mixed().oneOf(['M', 'F']),
-    level: yup.mixed().oneOf(['P', 'S', 'K'])
+    foto: yup.mixed()
+          .required("Required")
+          .test("is-valid-type", "Not a valid image type", value => isValidFileType(value && value.name.toLowerCase(), "image"))
+          .test("is-valid-size", "Max allowed size is 100KB", value => value && value.size <= MAX_FILE_SIZE),
+    school: yup.string()
   })
   .required()
 function FormularioHijo() {
@@ -25,8 +39,26 @@ function FormularioHijo() {
   } = useForm({
     resolver: yupResolver(schema),
   })
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (!errors.firstName && !errors.lastName  && !errors.num) {
+      const response = await fetch('http://localhost:5000/formularioHijo', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: data.firstName,
+          apellido: data.lastName,
+          sexo: data.sex,
+          foto: data.foto,
+          school: data.school
+        }),
+      });
+
+      const dataResponse = await response.json();
+
+      if(dataResponse.mensaje === 'Hijo registrado correctamente'){
         Swal.fire({
           icon: 'success',
           text: 'Se agrego correctamente',
@@ -36,9 +68,23 @@ function FormularioHijo() {
           if (respuesta) {
             window.location.reload();
           }
-        });
-    }  
-    console.log(data)
+        }); 
+      }
+      console.log(data)
+    }
+  }
+  async function requestDataColegio(){
+    const response = await fetch('http://localhost:5000/formularioHijo', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nivel: 'k'
+        }),
+      });
+    const dataResponse = await response.json();
   }
   return (
     <Fragment>
@@ -64,12 +110,6 @@ function FormularioHijo() {
         />
         <p className='spanA'>{errors.lastName?.message}</p>  
 
-        <label >Numero de Telefono:</label>
-        <input
-          className='inputT' 
-          type="text"
-          {...register("num")}/>
-        <p className='spanA'>{errors.num?.message}</p>  
         <label >Sexo:</label>
         <select
           className="select-customizado"
@@ -82,6 +122,7 @@ function FormularioHijo() {
         <label>Nivel que Cursa el Estudiante:</label>
         <select 
           className="select-customizado"
+          onChange={requestDataColegio()}
           {...register("level")}>
             <option >--------</option>
             <option value="S">Secundaria</option>
