@@ -1,18 +1,28 @@
-import React, {useState} from 'react'
+import { Fragment } from 'react'
+import { useForm } from 'react-hook-form';
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import styled from 'styled-components'
 import {Link, useNavigate} from 'react-router-dom'
 import Google from '../img/google.jpg'
 import Facebook from '../img/facebook.png'
+import Swal from 'sweetalert2'
+const schema = yup
+    .object({
+      email1: yup.string().email('Debe ser un Email valido')
+              .required('Se requiere Email'),
+      password1: yup.string()
+              .required('Se requiere Passworrd'),
+    })
+    .required()  
 function Form_login_client() {
     
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    let navigate = useNavigate();
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-  
+  let navigate = useNavigate();
+  const {register,handleSubmit,formState: { errors },} = useForm({resolver: yupResolver(schema),})
+       
+
+  const onSubmit = async (data) => {
+    if (!errors.firstName && !errors.lastName  && !errors.num) {
       const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
         credentials: 'include',
@@ -20,22 +30,28 @@ function Form_login_client() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          correo: email,
-          contrasena: password,
+          correo: data.email1,
+          contrasena: data.password1,
         }),
       });
-      const data = await response.json();
-      console.log(data);
-      setMessage(data.mensaje);
-      if(data.mensaje === 'Inicio de sesion exitoso'){
-        console.log("exicto");
-        navigate('/inicioPadre', { replace: true }) 
-        // Aquí ponemos replace:true para reemplazar la ruta actual con la tuya, pues si usaramos el navigate por sí solo, pushearía la ruta por encima de la otra
+
+      const dataResponse = await response.json();
+
+      if(dataResponse.mensaje === 'Inicio de sesion exitoso'){
+        Swal.fire({
+          icon: 'success',
+          text: 'Inicio Exitoso',
+          background:'#B4B7A2',
+          confirmButtonColor:'#F57D0D',
+        }).then(respuesta => {
+          if (respuesta) {
+            navigate('/inicioPadre', { replace: true }) 
+          }
+        }); 
       }
-    };
-    
-
-
+      console.log(data)
+    }
+  }    
 
   return (
     <Login_container_client>
@@ -47,14 +63,23 @@ function Form_login_client() {
                 <h1 class="titleMain">I</h1>
                 <h1 class="titleMain">N</h1>
             </div>
-            <form action="" id='form_login_c' onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input type="email" placeholder='Email' className='input_l' value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <label>Password</label>
-                <input type="password" placeholder='Passworrd' className='input_l' value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                <Link to='www.google.com'>olvidaste tu Contraseña?</Link>
+            <form action="" id='form_login_c' onSubmit={handleSubmit(onSubmit)}>
+                <label>Email: </label>
+                <input type="email" 
+                placeholder='ejemplo@gmail.com' 
+                className='input_l'
+                {... register('email1')}
+                />
+                <p className='spanA'>{errors.email1?.message}</p>
+                <label>Password:  </label>
+                <input type="password"   
+                className='input_l' 
+                {... register('password1')}
+                />
+                <p className='spanA'>{errors.password1?.message}</p>
+                <Link to='www.google.com'>Olvidaste tu Contraseña?</Link>
                 <br />
-                <button type='submit' className='buttonN'>Iniciar Sesion</button>
+                <button type='submit' id='button100'>Iniciar Sesion</button>
                 <div id='buttonRedes'>
                     <button type='button' className='buttonI'><img src={Google} alt="" className='buttonImg'/></button>
                     <button type='button' className='buttonI'><img src={Facebook} alt="" className='buttonImg'/></button>
@@ -73,7 +98,9 @@ const Login_container_client = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    label{
+      font-family: 'nunitoN'; 
+    }
     .buttonI{
         background-color: white;
         border: none;
@@ -96,13 +123,22 @@ const Login_container_client = styled.nav`
         width: 30px;
     }
     a{
-        text-decoration: none;
-        color: #636363;
+      font-family: 'nunitoN ';
+      text-decoration: none;
+      color: #636363;
     }
     a:hover{
         color: #F57D0D;
     }
+    .spanA{
+    font-family: 'nunitoN';
+    color: red;
+    margin: 0px;
+    padding: 0px;
+    font-size: calc(0.01vw + 0.8em);
+    }
     .input_l{
+        font-family: 'nunitoN';
         background-color: white;
         border: none;
         border-radius: 5px;
@@ -149,30 +185,19 @@ const Login_container_client = styled.nav`
         display: block;
         padding-top: 40px;
     }
-    .buttonN{
-      padding-left: 5%;
-      padding-right: 5%;
-      padding-top: 2%;
-      padding-bottom: 2%;
-      height: auto;/*(para que tenga fijo el height)*/
-      width: 100%;
-      background-color: #F57D0D;
-      color: white;
-      font-family: 'raleway';
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      border: none;
+    #button100{
+    background-color: #F57D0D;
+    color: white;
+    font-family: 'ralewayB';
+    margin-top: 2vh;
+    border:none;
+    width: 100%;
+    height: 5vh;
+    border-radius: 0.7vh;
   }
-  .buttonN:hover{
-      background-color:#636363;
-      color: #F57D0D;
-      transition-duration: 200ms;
-  }
-  .buttonN:active{
-      border: #F57D0D 5px;
+  #button100:hover{
+    background-color: #636363;
+    color: #F57D0D;
   }
 
 `
