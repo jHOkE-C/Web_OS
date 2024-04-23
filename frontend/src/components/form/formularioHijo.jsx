@@ -4,11 +4,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
 
-
+  
 
 const MAX_FILE_SIZE = 102400; //100KB
 
@@ -17,76 +17,84 @@ const validFileExtensions = { image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'
 function isValidFileType(fileName, fileType) {
   return fileName && validFileExtensions[fileType].indexOf(fileName.split('.').pop()) > -1;
 }
-const schema = yup
-  .object({
+const schema = yup.object({
     firstName: yup.string('Solo esta permitido letras')
               .required('Se requiere Nombres'),
     lastName: yup.string('solo esta permitido letras')
             .required('Se requiere Apellidos'),
     sex: yup.mixed().oneOf(['M', 'F']),
-    foto: yup.mixed()
-          .required("Requerido")
-          .test("Tipo de archivo valido", "No es un tipo de imagen valido", value => isValidFileType(value && value.name.toLowerCase(), "image"))
-          .test("Tipo de archivo valido", "Maximo tamaño 100KB", value => value && value.size <= MAX_FILE_SIZE),
-    school: yup.string()
+    // foto: yup.mixed()
+    //       .required("Requerido")
+    //       .test("Tipo de archivo valido", "No es un tipo de imagen valido", value => isValidFileType(value && value.name.toLowerCase(), "image"))
+    //       .test("Tipo de archivo valido", "Maximo tamaño 100KB", value => value && value.size <= MAX_FILE_SIZE),
+    // school: yup.string()
   })
   .required()
-function FormularioHijo() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  })
-  const onSubmit = async (data) => {
-    if (!errors.firstName && !errors.lastName  && !errors.num) {
-      const response = await fetch('http://localhost:5000/formularioHijo', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nombre: data.firstName,
-          apellido: data.lastName,
-          sexo: data.sex,
-          foto: data.foto,
-          school: data.school
-        }),
-      });
+  function FormularioHijo() {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+      resolver: yupResolver(schema),
+    });
+  
+    const onSubmit = async (data) => {
+      try {
+        const response = await fetch('http://localhost:5000/formularioHijo', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nombre: data.firstName,
+            apellido: data.lastName,
+            sexo: data.sex
 
-      const dataResponse = await response.json();
-
-      if(dataResponse.mensaje === 'Hijo registrado correctamente'){
+          }),
+          // body: JSON.stringify(data), // Enviar los datos del formulario como JSON
+        });
+  
+        const responseData = await response.json();
+  
+        if (response.ok) {
+          Swal.fire({
+            icon: 'success',
+            text: responseData.mensaje,
+            background:'#B4B7A2',
+            confirmButtonColor:'#F57D0D',
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: responseData.mensaje,
+            background:'#B4B7A2',
+            confirmButtonColor:'#F57D0D',
+          });
+        }
+      } catch (error) {
+        console.error('Error:', error);
         Swal.fire({
-          icon: 'success',
-          text: 'Se agrego correctamente',
+          icon: 'error',
+          text: 'Hubo un error al procesar la solicitud',
           background:'#B4B7A2',
           confirmButtonColor:'#F57D0D',
-        }).then(respuesta => {
-          if (respuesta) {
-            window.location.reload();
-          }
-        }); 
+        });
       }
-      console.log(data)
-    }
-  }
+    };
 
-  async function requestDataColegio(){
-    const response = await fetch('http://localhost:5000/formularioHijo', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nivel: 'k'
-        }),
-      });
-    const dataResponse = await response.json();
-  }
+  // async function requestDataColegio(){
+  //   const response = await fetch('http://localhost:5000/formularioHijo', {
+  //       method: 'POST',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         nivel: 'k'
+  //       }),
+  //     });
+  //   const dataResponse = await response.json();
+  // }
 
   return (
     <Fragment>
@@ -94,7 +102,6 @@ function FormularioHijo() {
     <FormContainerH>
       
       <form onSubmit={handleSubmit(onSubmit)} id='formH'>
-        <h1></h1>
         <label>Nombre:</label>
         <input
           className='inputT' 
@@ -121,7 +128,7 @@ function FormularioHijo() {
             <option value="F">Femenino</option>
         </select>
         <p className='spanA'>{errors.sex?.message}</p>
-        <label>Nivel que Cursa el Estudiante:</label>
+        {/* <label>Nivel que Cursa el Estudiante:</label>
         <select 
           className="select-customizado"
           onChange={requestDataColegio()}
@@ -138,7 +145,7 @@ function FormularioHijo() {
           {...register("school")}>
             <option >--------</option>
         </select>
-        <p className='spanA'>{errors.school?.message}</p>
+        <p className='spanA'>{errors.school?.message}</p>*/}
         <button type='submit' id='button100'>Agregar Hijo</button>
       </form>
       
