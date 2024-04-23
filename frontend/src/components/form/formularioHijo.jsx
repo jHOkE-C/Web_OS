@@ -4,7 +4,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import styled from 'styled-components';
-//import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
 
@@ -18,24 +17,25 @@ function isValidFileType(fileName, fileType) {
   return fileName && validFileExtensions[fileType].indexOf(fileName.split('.').pop()) > -1;
 }
 const schema = yup.object({
-    firstName: yup.string('Solo esta permitido letras')
-              .required('Se requiere Nombres'),
-    lastName: yup.string('solo esta permitido letras')
-            .required('Se requiere Apellidos'),
-    sex: yup.mixed().oneOf(['M', 'F']),
-    // foto: yup.mixed()
-    //       .required("Requerido")
-    //       .test("Tipo de archivo valido", "No es un tipo de imagen valido", value => isValidFileType(value && value.name.toLowerCase(), "image"))
-    //       .test("Tipo de archivo valido", "Maximo tamaño 100KB", value => value && value.size <= MAX_FILE_SIZE),
-    // school: yup.string()
-  })
-  .required()
-  function FormularioHijo() {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-      resolver: yupResolver(schema),
-    });
-  
-    const onSubmit = async (data) => {
+  firstName: yup.string('Solo esta permitido letras')
+            .required('Se requiere Nombres'),
+  lastName: yup.string('solo esta permitido letras')
+          .required('Se requiere Apellidos'),
+  sex: yup.mixed().oneOf(['M', 'F']),
+  /*foto: yup.mixed()
+        .required("Requerido")
+        .test("Tipo de archivo valido", "No es un tipo de imagen valido", value => isValidFileType(value && value.name.toLowerCase(), "image"))
+        .test("Tipo de archivo valido", "Maximo tamaño 100KB", value => value && value.size <= MAX_FILE_SIZE),
+  school: yup.string()*/
+}).required()
+
+function FormularioHijo() {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async (data) => {
+    if(!errors.firstName && !errors.lastName && !errors.sex){
       try {
         const response = await fetch('http://localhost:5000/formularioHijo', {
           method: 'POST',
@@ -47,7 +47,6 @@ const schema = yup.object({
             nombre: data.firstName,
             apellido: data.lastName,
             sexo: data.sex
-
           }),
           // body: JSON.stringify(data), // Enviar los datos del formulario como JSON
         });
@@ -63,13 +62,6 @@ const schema = yup.object({
           }).then(() => {
             window.location.reload();
           });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            text: responseData.mensaje,
-            background:'#B4B7A2',
-            confirmButtonColor:'#F57D0D',
-          });
         }
       } catch (error) {
         console.error('Error:', error);
@@ -80,76 +72,77 @@ const schema = yup.object({
           confirmButtonColor:'#F57D0D',
         });
       }
-    };
+    }
+  };
 
-  // async function requestDataColegio(){
-  //   const response = await fetch('http://localhost:5000/formularioHijo', {
-  //       method: 'POST',
-  //       credentials: 'include',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         nivel: 'k'
-  //       }),
-  //     });
-  //   const dataResponse = await response.json();
-  // }
+  async function requestDataColegio(){
+    /*const response = await fetch('http://localhost:5000/formularioHijo', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nivel: 'k'
+        }),
+      });
+    const dataResponse = await response.json();*/
+  }
 
   return (
     <Fragment>
-    <HPadre/>
-    <FormContainerH>
-      
-      <form onSubmit={handleSubmit(onSubmit)} id='formH'>
-        <label>Nombre:</label>
-        <input
-          className='inputT' 
-          type="text" 
-          maxLength={15}
-          {...register("firstName")}
-        />
-        <p className='spanA'>{errors.firstName?.message}</p>
-        <label >Apellido:</label>
-        <input 
-          className='inputT' 
-          type="text" 
-          maxLength={20}
-          {...register("lastName")}
-        />
-        <p className='spanA'>{errors.lastName?.message}</p>  
+      <HPadre/>
+      <FormContainerH>
+        
+        <form onSubmit={handleSubmit(onSubmit)} id='formH'>
+          <label>Nombre:</label>
+          <input
+            className='inputT' 
+            type="text" 
+            maxLength={15}
+            {...register("firstName")}
+          />
+          <p className='spanA'>{errors.firstName?.message}</p>
+          <label >Apellido:</label>
+          <input 
+            className='inputT' 
+            type="text" 
+            maxLength={20}
+            {...register("lastName")}
+          />
+          <p className='spanA'>{errors.lastName?.message}</p>  
 
-        <label >Sexo:</label>
-        <select
-          className="select-customizado"
-          {...register("sex")}>
-            <option >--------</option>
-            <option value="M">Masculino</option>
-            <option value="F">Femenino</option>
-        </select>
-        <p className='spanA'>{errors.sex?.message}</p>
-        {/* <label>Nivel que Cursa el Estudiante:</label>
-        <select 
-          className="select-customizado"
-          onChange={requestDataColegio()}
-          {...register("level")}>
-            <option >--------</option>
-            <option value="S">Secundaria</option>
-            <option value="P">Primaria</option>
-            <option value="K">Kinder</option>
-        </select>
-        <p className='spanA'>{errors.level?.message}</p>
-        <label htmlFor="">Colegio :</label>
-        <select 
-          className="select-customizado"
-          {...register("school")}>
-            <option >--------</option>
-        </select>
-        <p className='spanA'>{errors.school?.message}</p>*/}
-        <button type='submit' id='button100'>Agregar Hijo</button>
-      </form>
-      
-    </FormContainerH>
+          <label >Sexo:</label>
+          <select
+            className="select-customizado"
+            {...register("sex")}>
+              <option >--------</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+          </select>
+          <p className='spanA'>{errors.sex?.message}</p>
+          <label>Nivel que Cursa el Estudiante:</label>
+          <select 
+            className="select-customizado"
+            onChange={requestDataColegio()}
+            {...register("level")}>
+              <option >--------</option>
+              <option value="S">Secundaria</option>
+              <option value="P">Primaria</option>
+              <option value="K">Kinder</option>
+          </select>
+          <p className='spanA'>{errors.level?.message}</p>
+          <label htmlFor="">Colegio :</label>
+          <select 
+            className="select-customizado"
+            {...register("school")}>
+              <option >--------</option>
+          </select>
+          <p className='spanA'>{errors.school?.message}</p>
+          <button type='submit' id='button100'>Agregar Hijo</button>
+        </form>
+        
+      </FormContainerH>
     </Fragment>
     
   )
@@ -188,32 +181,32 @@ const FormContainerH = styled.nav`
     font-family: 'nunitoN';
   } 
   /* Estilo del select */
-.select-customizado {
-  background-color: #f2f2f2;
-  color: #333;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 0.7vh;
-  font-family: 'nunitoN';
-  font-size: calc(0.1vw + 0.8em);
-  width: 100%;
-  height: 6vh;
-  outline: none;
-}
-.select-customizado:active, .select-customizado:focus, .select-customizado:hover {
-  border-color: #636363;
-  box-shadow: 0 0 5px #f2f2f2;
-}
-.select-customizado option {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: #F57D0D;
-  font-family: 'nunitoN';
-  background-color: #f2f2f2;
-  color: #333;
-  padding: 8px;
-}
+  .select-customizado {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 0.7vh;
+    font-family: 'nunitoN';
+    font-size: calc(0.1vw + 0.8em);
+    width: 100%;
+    height: 6vh;
+    outline: none;
+  }
+  .select-customizado:active, .select-customizado:focus, .select-customizado:hover {
+    border-color: #636363;
+    box-shadow: 0 0 5px #f2f2f2;
+  }
+  .select-customizado option {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: #F57D0D;
+    font-family: 'nunitoN';
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 8px;
+  }
   #button100{
     background-color: #F57D0D;
     color: white;
