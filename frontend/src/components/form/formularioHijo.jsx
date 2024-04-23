@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
 
-  
+import MapsF from '../maps/mapsForm'; 
 
 const MAX_FILE_SIZE = 102400; //100KB
 
@@ -139,6 +139,7 @@ function FormularioHijo() {
               <option >--------</option>
           </select>
           <p className='spanA'>{errors.school?.message}</p>
+          <MapsF></MapsF>
           <button type='submit' id='button100'>Agregar Hijo</button>
         </form>
         
@@ -151,13 +152,14 @@ function FormularioHijo() {
 export default FormularioHijo
 
 const FormContainerH = styled.nav`
-  height: calc(88vh);
+  margin-top: 10vh;
+  margin-bottom: 5vh;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;  
   #formH{
-    width: 25%;
+    width: 70%;
     display: block;
   }
   label{
@@ -175,7 +177,7 @@ const FormContainerH = styled.nav`
   .inputT{
     background-color: #f2f2f2;
     border:none;
-    width: 100%;
+    width: 50%;
     height: 5vh;
     border-radius: 0.7vh;
     font-family: 'nunitoN';
@@ -189,7 +191,7 @@ const FormContainerH = styled.nav`
     border-radius: 0.7vh;
     font-family: 'nunitoN';
     font-size: calc(0.1vw + 0.8em);
-    width: 100%;
+    width: 50%;
     height: 6vh;
     outline: none;
   }
