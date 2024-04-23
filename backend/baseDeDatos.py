@@ -17,9 +17,11 @@ class Estudiante(Model):
     nombre = CharField()
     apellido = CharField()
     sexo = CharField()
-    aceptado = BooleanField()
+    #aceptado = BooleanField()
+    #curso = CharField()
     Padre = ForeignKeyField(Padre, backref='hijos', null=True)
-
+    #cordenadas_latitud = FloatField()
+    #cordenadas_longitud = FloatField()
     class Meta:
         database = db
 

@@ -85,14 +85,14 @@ def guardarAlumno():
             nombre = data.get('nombre')
             apellido = data.get('apellido')
             sexo = data.get('sexo')
-            aceptado = data.get('aceptado')
+            #aceptado = data.get('aceptado')
 
             # Crear y guardar al hijo en la base de datos relacionándolo con el padre
             estudiante = Estudiante.create(
                 nombre=nombre,
                 apellido=apellido,
                 sexo=sexo,
-                aceptado=aceptado,
+                #aceptado=aceptado,
                 padre=padre  # Relacionar al hijo con el padre
             )
 
