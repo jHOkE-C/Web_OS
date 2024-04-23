@@ -95,6 +95,7 @@ function FormularioHijo() {
       <FormContainerH>
         
         <form onSubmit={handleSubmit(onSubmit)} id='formH'>
+          <h1>FORMULARIO PARA HIJO</h1>
           <label>Nombre:</label>
           <input
             className='inputT' 
@@ -158,6 +159,12 @@ const FormContainerH = styled.nav`
   align-items: center;
   align-content: center;
   justify-content: center;  
+  H1{
+    display: flex;
+    justify-content: center;
+    font-family: 'ralewayB';
+    color: #F57D0D;
+  }
   #formH{
     width: 70%;
     display: block;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const containerStyle = {
     width: '150vh',
-    height: '80vh'
+    height: '80vh',
   };
   
   const center = {
@@ -50,6 +50,7 @@ function MapsForm() {
 export default React.memo(MapsForm)
 
 const MapsContainer = styled.nav`
+
     margin-top: 5vh;
     margin-bottom: 3vh;
 `
