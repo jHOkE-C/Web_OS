@@ -2,12 +2,12 @@ import { Fragment } from 'react'
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import React from 'react'
 import styled from 'styled-components';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
 
-  
+import MapsF from '../maps/mapsForm'; 
 
 const MAX_FILE_SIZE = 102400; //100KB
 
@@ -88,13 +88,18 @@ function FormularioHijo() {
       });
     const dataResponse = await response.json();*/
   }
+  const [markerCoordinates, setMarkerCoordinates] = React.useState(null);
 
+  const handleMarkerClick = (lat, lng) => {
+    setMarkerCoordinates({ lat, lng });
+  };
   return (
     <Fragment>
       <HPadre/>
       <FormContainerH>
         
         <form onSubmit={handleSubmit(onSubmit)} id='formH'>
+          <h1>FORMULARIO PARA HIJO</h1>
           <label>Nombre:</label>
           <input
             className='inputT' 
@@ -139,6 +144,15 @@ function FormularioHijo() {
               <option >--------</option>
           </select>
           <p className='spanA'>{errors.school?.message}</p>
+          <MapsF onMarkerClick={handleMarkerClick}/>
+          <input 
+            type="text" 
+            value={markerCoordinates != null ? markerCoordinates.lat : null} 
+          />
+          <input 
+            type="text" 
+            value={markerCoordinates != null ? markerCoordinates.lng : null} 
+          />
           <button type='submit' id='button100'>Agregar Hijo</button>
         </form>
         
@@ -151,13 +165,20 @@ function FormularioHijo() {
 export default FormularioHijo
 
 const FormContainerH = styled.nav`
-  height: calc(88vh);
+  margin-top: 10vh;
+  margin-bottom: 5vh;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;  
+  H1{
+    display: flex;
+    justify-content: center;
+    font-family: 'ralewayB';
+    color: #F57D0D;
+  }
   #formH{
-    width: 25%;
+    width: 70%;
     display: block;
   }
   label{
@@ -175,7 +196,7 @@ const FormContainerH = styled.nav`
   .inputT{
     background-color: #f2f2f2;
     border:none;
-    width: 100%;
+    width: 50%;
     height: 5vh;
     border-radius: 0.7vh;
     font-family: 'nunitoN';
@@ -189,7 +210,7 @@ const FormContainerH = styled.nav`
     border-radius: 0.7vh;
     font-family: 'nunitoN';
     font-size: calc(0.1vw + 0.8em);
-    width: 100%;
+    width: 50%;
     height: 6vh;
     outline: none;
   }
