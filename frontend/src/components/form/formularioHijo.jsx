@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import React from 'react'
 import styled from 'styled-components';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
@@ -88,7 +88,11 @@ function FormularioHijo() {
       });
     const dataResponse = await response.json();*/
   }
+  const [markerCoordinates, setMarkerCoordinates] = React.useState(null);
 
+  const handleMarkerClick = (lat, lng) => {
+    setMarkerCoordinates({ lat, lng });
+  };
   return (
     <Fragment>
       <HPadre/>
@@ -140,7 +144,15 @@ function FormularioHijo() {
               <option >--------</option>
           </select>
           <p className='spanA'>{errors.school?.message}</p>
-          <MapsF></MapsF>
+          <MapsF onMarkerClick={handleMarkerClick}/>
+          <input 
+            type="text" 
+            value={markerCoordinates != null ? markerCoordinates.lat : null} 
+          />
+          <input 
+            type="text" 
+            value={markerCoordinates != null ? markerCoordinates.lng : null} 
+          />
           <button type='submit' id='button100'>Agregar Hijo</button>
         </form>
         
