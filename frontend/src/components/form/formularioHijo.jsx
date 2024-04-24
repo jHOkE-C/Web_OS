@@ -48,7 +48,6 @@ function FormularioHijo() {
             apellido: data.lastName,
             sexo: data.sex
           }),
-          // body: JSON.stringify(data), // Enviar los datos del formulario como JSON
         });
   
         const responseData = await response.json();
