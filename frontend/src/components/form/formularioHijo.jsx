@@ -10,7 +10,7 @@ import HPadre from '../loginPadre/headerPadre'
 import MapsF from '../maps/mapsForm'; 
 
 const MAX_FILE_SIZE = 102400; //100KB
-
+//hola
 const validFileExtensions = { image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
 
 function isValidFileType(fileName, fileType) {
