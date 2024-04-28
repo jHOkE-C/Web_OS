@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link}from 'react-router-dom'
 import styled from 'styled-components'
-function headerPadre() {
+function headerAdmind() {
 
   const salir = async () => {
     try {
@@ -22,27 +22,27 @@ function headerPadre() {
 
 
   return (
-    <HeaderPadreContainer>
+    <HeaderAdmindContainer>
       <header id="headerCss">  
         <div id="logo">
           <h1 id='h4_especial'>ASTREA</h1>
         </div>
         <div id="navegation">
-          <Link to="/" className='linksHeader'>Inicio</Link>
-          <Link to="/Nosotros" className='linksHeader'>Nosotros</Link>
-          <Link to="/CrearRutas" className='linksHeader'>Contacto</Link>
-          <Link to="/FormHijos" className='linksHeader'>Lista de Hijos</Link>
-          <Link to="/Perfil" className="buttonN">Perfil</Link>
+          <Link to="" className='linksHeader'>Inicio</Link>
+          <Link to="" className='linksHeader'>Lista Estudiantes</Link>
+          <Link to="" className='linksHeader'>Lista Conductores</Link>
+          <Link to="" className='linksHeader'>Lista Rutas</Link>
+          <Link to="/CrearRutas" className="buttonN">Crear Rutas</Link>
           <Link to="/" className='buttonN' onClick={salir}>Salir</Link>
         </div>
       </header>
-    </HeaderPadreContainer>     
+    </HeaderAdmindContainer>     
   )
 }
 
-export default headerPadre
+export default headerAdmind
 
-const HeaderPadreContainer = styled.nav`
+const HeaderAdmindContainer = styled.nav`
   display: flex;
   width: calc(98vw);
   height: calc(9vh);
@@ -61,7 +61,7 @@ const HeaderPadreContainer = styled.nav`
   }
   #logo{
     display: inline;
-    margin-right: calc(38vw + .7em);
+    margin-right: calc(28vw + .7em);
   } 
   #navegation{
     display: inline;
