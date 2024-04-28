@@ -6,6 +6,8 @@ import Contacto from '../pages/contacto'
 import Login from '../pages/Login'
 import IPadre from '../pages/loginPadre/inicioPadre'
 import FHijos from '../components/form/formularioHijo'
+import CrearRutas from '../pages/loginAdministrador/crearRuta'
+import CrearRutasIda from '../pages/loginAdministrador/crearRutasIda'
 function navBar() {
   return (
       <Routes>
@@ -15,6 +17,8 @@ function navBar() {
         <Route path="/Login" element={<Login/>}/>
         <Route path="/InicioPadre" element={<IPadre/>}/>
         <Route path="/FormHijos" element={<FHijos/>}/>
+        <Route path="/CrearRutas" element={<CrearRutas/>}/>
+        <Route path="/CrearRutas/ida" element={<CrearRutasIda/>}/>
       </Routes>
   )
 }
