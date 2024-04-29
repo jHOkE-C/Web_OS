@@ -2,8 +2,8 @@ import React from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import styled from 'styled-components';
 const containerStyle = {
-    width: '160vh',
-    height: '83 vh',
+    width: '153vh',
+    height: '83vh',
   };
   
   const center = {
@@ -40,9 +40,10 @@ function MapsForm({ onMarkerClick }) {
     const lng = e.latLng.lng();
     onMarkerClick(e.latLng.lat(), e.latLng.lng()); 
     var markerCoordinate = `lat: ${lat} lng: ${lng}`;
-    setLocation(() => {
+    setLocation((previousState) => {
       return {
         markers: [
+            ...previousState.markers,
           {
             title: "",
             name: markerCoordinate,
@@ -51,7 +52,6 @@ function MapsForm({ onMarkerClick }) {
         ]
       };
     });
-    
   };
 
   // function when clicking on a marker
