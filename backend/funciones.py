@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 # Configuración de la aplicación Flask
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '1234567'
 CORS(app,supports_credentials=True)
 
 # Configuración de la base de datos

@@ -10,7 +10,7 @@ import HPadre from '../loginPadre/headerPadre'
 import MapsF from '../maps/mapsForm'; 
 
 const MAX_FILE_SIZE = 102400; //100KB
-
+//hola
 const validFileExtensions = { image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
 
 function isValidFileType(fileName, fileType) {
@@ -48,7 +48,6 @@ function FormularioHijo() {
             apellido: data.lastName,
             sexo: data.sex
           }),
-          // body: JSON.stringify(data), // Enviar los datos del formulario como JSON
         });
   
         const responseData = await response.json();
