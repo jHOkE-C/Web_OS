@@ -22,5 +22,11 @@
     "Nivel": "Primaria",
     "Entrada": "7:00",
     "Salida": "12:15"
+  },
+  {
+    "Colegio": "Kinder Random",
+    "Nivel": "Kinder",
+    "Entrada": "7:00",
+    "Salida": "12:15"
   }
 ]
