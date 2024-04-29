@@ -1,0 +1,32 @@
+[
+  {
+      "Colegio": "COTAPACHI",
+      "Nivel": "Secundaria",
+      "Entrada": "7:00",
+      "Salida": "12:15"
+  },
+  {
+      "Colegio": "Don Bosco Mañana",
+      "Nivel": "Secundaria",
+      "Entrada": "7:00",
+      "Salida": "12:15"
+  },
+  {
+    "Colegio": "Calvert",
+    "Nivel": "Secundaria",
+    "Entrada": "8:00",
+    "Salida": "15:00"
+  },
+  {
+    "Colegio": "Don Bosco Mañana",
+    "Nivel": "Primaria",
+    "Entrada": "7:00",
+    "Salida": "12:15"
+  },
+  {
+    "Colegio": "Kinder Random",
+    "Nivel": "Kinder",
+    "Entrada": "7:00",
+    "Salida": "12:15"
+  }
+]

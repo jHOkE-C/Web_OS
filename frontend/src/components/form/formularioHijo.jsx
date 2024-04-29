@@ -131,9 +131,9 @@ function FormularioHijo() {
             onChange={requestDataColegio()}
             {...register("level")}>
               <option >--------</option>
-              <option value="S">Secundaria</option>
-              <option value="P">Primaria</option>
-              <option value="K">Kinder</option>
+              <option value="Secundaria">Secundaria</option>
+              <option value="Primaria">Primaria</option>
+              <option value="Kinder">Kinder</option>
           </select>
           <p className='spanA'>{errors.level?.message}</p>
           <label htmlFor="">Colegio :</label>
