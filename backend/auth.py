@@ -14,7 +14,7 @@ def login_Padre():
         
         padre = Padre.get(Padre.correo == correo, Padre.contrasena == contrasena)
         session['padre_id'] = padre.id
-        return jsonify({'mensaje': 'Inicio de sesión exitoso'})
+        return jsonify({'mensaje': 'Inicio de sesion exitoso'})
     except Padre.DoesNotExist:
         return jsonify({'mensaje': 'Nombre de usuario o contraseña incorrectos'})
     except Exception as e:

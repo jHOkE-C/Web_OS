@@ -1,3 +1,3 @@
 
-('Juan', 'Gómez', 'juan@example.com', '123456789', 'contrasena1'),
-('María', 'López', 'maria@example.com', '987654321', 'contrasena2');
+1|Juan|Pérez|juanperez@example.com|123456789|contraseña123
+2|María|Gómez|mariagomez@example.com|987654321|password456

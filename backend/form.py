@@ -36,13 +36,12 @@ def guardarAlumno():
             # Recibir datos del formulario del hijo
             nombre = data.get('nombre')
             apellido = data.get('apellido')
-            sexo = data.get('sexo')
             colegio_nombre = data.get('colegio')  # Assume colegio name is sent
             latitud = data.get('latitud')
             longitud = data.get('longitud')
 
             # Check if all required fields are present
-            if not all([nombre, apellido, sexo, colegio_nombre, latitud, longitud]):
+            if not all([nombre, apellido, colegio_nombre, latitud, longitud]):
                 return jsonify({'mensaje': 'Faltan campos obligatorios'}), 400
 
             # Get or create Colegio object
@@ -58,7 +57,6 @@ def guardarAlumno():
             estudiante = Estudiante.create(
                 nombre=nombre,
                 apellido=apellido,
-                sexo=sexo,
                 padre=padre,  # Relacionar al hijo con el padre
                 colegio=colegio,  # Relacionar al estudiante con el colegio
                 coordenadas=coordenadas  # Relacionar al estudiante con las coordenadas
