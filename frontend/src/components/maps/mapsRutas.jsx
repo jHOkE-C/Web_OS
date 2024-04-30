@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import styled from 'styled-components';
 const containerStyle = {
@@ -10,7 +11,7 @@ const containerStyle = {
     lat: -17.386046076379788,
     lng: -66.15643099889358, 
   };
-function MapsForm({ onMarkerClick }) {
+function MapsForm({ estu }) {
   const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: "AIzaSyBzEYvBtoYPDH1_JX60ILe5xMaCKK2E0ek"
@@ -28,16 +29,21 @@ function MapsForm({ onMarkerClick }) {
     ]
   });
 
+  useEffect(() => {
+    if (estu) {
+      console.log(estu)
+      estu.map(estudiante => mapClicked(estudiante))
+    }
+  }, [estu]);
   // Hook for clicking on a marker to show an active marker
   const [activeMarker, setActiveMarker] = React.useState(null);
 
 
   // Function when clicking on the MAP
   const mapClicked = (e) => {
-    const key = Math.round(Math.abs((e.latLng.lat() + e.latLng.lng()) * 10000));
-    const lat = e.latLng.lat();
-    const lng = e.latLng.lng();
-    onMarkerClick(e.latLng.lat(), e.latLng.lng()); 
+    const lat = Number(e.Latitud);
+    const lng = Number (e.Longitud);
+    
     var markerCoordinate = `lat: ${lat} lng: ${lng}`;
     setLocation((previousState) => {
       return {

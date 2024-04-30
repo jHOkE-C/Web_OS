@@ -11,4 +11,4 @@ instalar python y pip
     pip install -U flask-cors
 
 INICIAR:
-python .\funciones.py
+python .\prueba.py

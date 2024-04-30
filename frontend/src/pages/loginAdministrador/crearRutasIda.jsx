@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import jsonData from '../../font/colegios.json'
+import jsonEstu from '../../font/mocks_alumnos.json'
 
 const schema = yup.object({
     level: yup.mixed('Seleccione un nivel').oneOf(['Secundaria', 'Primaria', 'Kinder'])
@@ -19,6 +20,7 @@ function CrearRutasIda() {
 
     //colegios
     const [ida, setIda] = useState([]);
+    const [estudiantes, setEstudiantes] = useState([]);
 
     async function pedidoJson(data){
         return new Promise((resolve, reject)=>{
@@ -55,11 +57,40 @@ function CrearRutasIda() {
         ])
     }
 
+    function onChangeCole(colegio){
+        setEstudiantes([])
+        pedidoJsonEstu(colegio).then((resultado)=>{
+            resultado.forEach((estudiante)=>{
+                handleMarkerClick(estudiante.Latitud, estudiante.Longitud);
+            })
+        }).catch((error)=>{
+            console.error(error)
+        })     
+    }
+    async function pedidoJsonEstu(colegio){
+        return new Promise((resolve, reject)=>{
+            try {
+                let elegidos = []
+                for (const estudiante of jsonEstu) {
+                    if (colegio === estudiante.Colegio) {
+                        elegidos.push(estudiante);
+                    }
+                }
+                resolve(elegidos);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
     //markadorees de google
-    const [markerCoordinates, setMarkerCoordinates] = React.useState(null);
-
     const handleMarkerClick = (lat, lng) => {
-        setMarkerCoordinates({ lat, lng });
+        setEstudiantes((previus)=>[
+            ...previus,
+            {
+                Latitud: lat,
+                Longitud: lng
+            }
+        ])
     };
 
   return (
@@ -77,8 +108,8 @@ function CrearRutasIda() {
                     </select>
                     <p className='spanA'>{errors.level?.message}</p>
                 </form>
-                <form action=""className='selectCole'>
-                    <select className='selectCole__ida'>
+                <form className='selectCole' onChange={e => onChangeCole(e.target.value)}>
+                    <select className='selectCole__ida' >
                         <option value="-">---------------------------</option>
                         {ida.map((colegio) => (
                             <option key={colegio.Colegio} value={colegio.Colegio}>{colegio.Colegio}</option>
@@ -88,7 +119,7 @@ function CrearRutasIda() {
                 </form>
             </div>
 
-            <MapsRutas onMarkerClick={handleMarkerClick}></MapsRutas>
+            <MapsRutas estu={estudiantes}></MapsRutas>
 
             <form className='indicePuntosRuta'>
                 <input type="text" />
