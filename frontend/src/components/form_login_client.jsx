@@ -23,7 +23,7 @@ function Form_login_client() {
 
   const onSubmit = async (data) => {
     if (!errors.firstName && !errors.lastName  && !errors.num) {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('http://localhost:5000/auth_login_padre', {
         method: 'POST',
         credentials: 'include',
         headers: {

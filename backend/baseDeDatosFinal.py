@@ -76,6 +76,8 @@ class Estudiante(Model):
     class Meta:
         database = db
 
+    
+
 class Bus(Model):
     placa = CharField(unique=True)  
     modelo = CharField()
