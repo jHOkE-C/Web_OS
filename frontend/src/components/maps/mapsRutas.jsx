@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import styled from 'styled-components';
+import { setLocale } from 'yup';
 const containerStyle = {
     width: '153vh',
     height: '83vh',
@@ -31,7 +32,17 @@ function MapsForm({ estu }) {
 
   useEffect(() => {
     if (estu) {
-      console.log(estu)
+      setLocation(() => {
+        return {
+          markers: [
+            {
+              title: "",
+              name: 'hola',
+              position: { lat: 0, lng: 0}
+            }
+          ]
+        };
+      });
       estu.map(estudiante => mapClicked(estudiante))
     }
   }, [estu]);
@@ -61,10 +72,6 @@ function MapsForm({ estu }) {
 
   // function when clicking on a marker
   const markerClicked = (markers, key) => {
-    if (key === activeMarker) {
-      return;
-    }
-    // setA;
     setActiveMarker(key);
     
   };
@@ -86,9 +93,7 @@ function MapsForm({ estu }) {
             onMouseOut={() => setActiveMarker(null)}
           >
             {activeMarker === key ? (
-              <InfoWindow
-                onCloseClick={() => setActiveMarker(null)}
-              >
+              <InfoWindow>
                 <div>
                   <p>lat: {markers.position.lat}</p>
                   <p>log: {markers.position.lng}</p>
@@ -108,4 +113,5 @@ export default React.memo(MapsForm)
 const MapsContainer = styled.nav`
   margin-top: 2vh;
   margin-bottom: 3vh;
+  
 `

@@ -41,6 +41,7 @@ function FormularioHijo() {
   });
   const [school, setSchool] = useState([]);
   const onSubmit = async (data) => {
+    console.log(data)
     if(!errors.firstName && !errors.lastName &&  !errors.latitud && !errors.level && !errors.school){
       try {
         const response = await fetch('http://localhost:5000/form_registrar_alumno', {
@@ -53,8 +54,8 @@ function FormularioHijo() {
             nombre: data.firstName,
             apellido: data.lastName,
             colegio: data.school,
-            latitud : data.latitud,
-            longitud : data.longitud
+            latitud : markerCoordinates.latitud,
+            longitud : markerCoordinates.longitud
           }),
         });
   
@@ -127,6 +128,7 @@ function FormularioHijo() {
   const [markerCoordinates, setMarkerCoordinates] = React.useState(null);
 
   const handleMarkerClick = (lat, lng) => {
+    console.log(lat,lng);
     setMarkerCoordinates({ lat, lng });
   };
   return (
@@ -176,12 +178,12 @@ function FormularioHijo() {
           <MapsF onMarkerClick={handleMarkerClick}/>
           <input 
             type="text" 
-            value={markerCoordinates != null ? markerCoordinates.lat : null} 
+            value={markerCoordinates != null ? markerCoordinates.lat : 0} 
             {...register('latitud')}
           />
           <input 
             type="text" 
-            value={markerCoordinates != null ? markerCoordinates.lng : null} 
+            value={markerCoordinates != null ? markerCoordinates.lng : 0} 
             {...register('longitud')}  
           />
           <p className='spanA'>{errors.latitud?.message}</p>

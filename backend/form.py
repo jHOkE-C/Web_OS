@@ -57,9 +57,9 @@ def guardarAlumno():
             estudiante = Estudiante.create(
                 nombre=nombre,
                 apellido=apellido,
+                padre=padre,
                 sexo = '',
-                aceptado = False,
-                padre=padre,  # Relacionar al hijo con el padre
+                aceptado = False,  # Relacionar al hijo con el padre
                 colegio=colegio,  # Relacionar al estudiante con el colegio
                 coordenadas=coordenadas  # Relacionar al estudiante con las coordenadas
             )
