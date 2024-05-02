@@ -21,13 +21,18 @@ const schema = yup.object({
             .required('Se requiere Nombres'),
   lastName: yup.string('solo esta permitido letras')
           .required('Se requiere Apellidos'),
-  sex: yup.mixed().oneOf(['M', 'F']),
   level: yup.mixed().oneOf(['Primaria', 'Secundaria','Kinder']),
   /*foto: yup.mixed()
         .required("Requerido")
         .test("Tipo de archivo valido", "No es un tipo de imagen valido", value => isValidFileType(value && value.name.toLowerCase(), "image"))
         .test("Tipo de archivo valido", "Maximo tamaño 100KB", value => value && value.size <= MAX_FILE_SIZE),
-  school: yup.string()*/
+  */
+  school: yup.string(),
+  
+  latitud: yup.number('debe ser un numeero')
+              .required('Seleccione su casa en el mapa y verfique si es correcta'),
+  longitud: yup.number('debe ser un numero')
+                .required('Seleccione su casa en el mapa y verfique si es correcta')
 }).required()
 
 function FormularioHijo() {
@@ -36,9 +41,9 @@ function FormularioHijo() {
   });
   const [school, setSchool] = useState([]);
   const onSubmit = async (data) => {
-    if(!errors.firstName && !errors.lastName && !errors.sex){
+    if(!errors.firstName && !errors.lastName &&  !errors.latitud && !errors.level && !errors.school){
       try {
-        const response = await fetch('http://localhost:5000/formularioHijo', {
+        const response = await fetch('http://localhost:5000/form_registrar_alumno', {
           method: 'POST',
           credentials: 'include',
           headers: {
@@ -47,7 +52,9 @@ function FormularioHijo() {
           body: JSON.stringify({
             nombre: data.firstName,
             apellido: data.lastName,
-            sexo: data.sex
+            colegio: data.school,
+            latitud : data.latitud,
+            longitud : data.longitud
           }),
         });
   
@@ -77,7 +84,6 @@ function FormularioHijo() {
   async function pedidoJson(data, jsonData){
     return new Promise((resolve, reject)=>{
         try {
-            console.log()
             let elegidos = []
             for (const colegio of jsonData) {
                 if (data.level === colegio.nivel) {
@@ -103,7 +109,6 @@ function FormularioHijo() {
           if(!errors.level){
               pedidoJson(data,responseData).then((resultado)=>{
                   setSchool([])
-                  console.log(resultado)
                   resultado.forEach((colegio)=>{
                       agregarAlSelectColegiosIda(colegio);
                   })
@@ -147,16 +152,6 @@ function FormularioHijo() {
             {...register("lastName")}
           />
           <p className='spanA'>{errors.lastName?.message}</p>  
-
-          <label >Sexo:</label>
-          <select
-            className="select-customizado"
-            {...register("sex")}>
-              <option >--------</option>
-              <option value="M">Masculino</option>
-              <option value="F">Femenino</option>
-          </select>
-          <p className='spanA'>{errors.sex?.message}</p>
           <label>Nivel que Cursa el Estudiante:</label>
           <select 
             className="select-customizado"
@@ -182,11 +177,14 @@ function FormularioHijo() {
           <input 
             type="text" 
             value={markerCoordinates != null ? markerCoordinates.lat : null} 
+            {...register('latitud')}
           />
           <input 
             type="text" 
             value={markerCoordinates != null ? markerCoordinates.lng : null} 
+            {...register('longitud')}  
           />
+          <p className='spanA'>{errors.latitud?.message}</p>
           <button type='submit' id='button100'>Agregar Hijo</button>
         </form>
         

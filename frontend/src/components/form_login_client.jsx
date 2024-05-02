@@ -49,6 +49,14 @@ function Form_login_client() {
           }
         }); 
       }
+      else if(dataResponse.mensaje === 'Nombre de usuario o contraseña incorrectos'){
+        Swal.fire({
+          icon: 'error',
+          text: 'Nombre de usuario o contraseña incorrectos',
+          background:'#B4B7A2',
+          confirmButtonColor:'#F57D0D',
+        })
+      }
       console.log(data)
     }
   }    
