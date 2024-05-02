@@ -54,8 +54,8 @@ function FormularioHijo() {
             nombre: data.firstName,
             apellido: data.lastName,
             colegio: data.school,
-            latitud : markerCoordinates.latitud,
-            longitud : markerCoordinates.longitud
+            latitud : data.latitud,
+            longitud : data.longitud
           }),
         });
   
