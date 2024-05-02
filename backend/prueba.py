@@ -1,6 +1,7 @@
 from flask import Flask
 from auth import auth_bp
 from form  import form_bp
+
 from flask_cors import CORS
 
 # Configuración de la aplicación Flask
