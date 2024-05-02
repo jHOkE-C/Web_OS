@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
@@ -21,23 +21,29 @@ const schema = yup.object({
             .required('Se requiere Nombres'),
   lastName: yup.string('solo esta permitido letras')
           .required('Se requiere Apellidos'),
-  sex: yup.mixed().oneOf(['M', 'F']),
+  level: yup.mixed().oneOf(['Primaria', 'Secundaria','Kinder']),
   /*foto: yup.mixed()
         .required("Requerido")
         .test("Tipo de archivo valido", "No es un tipo de imagen valido", value => isValidFileType(value && value.name.toLowerCase(), "image"))
         .test("Tipo de archivo valido", "Maximo tamaño 100KB", value => value && value.size <= MAX_FILE_SIZE),
-  school: yup.string()*/
+  */
+  school: yup.string(),
+  
+  latitud: yup.number('debe ser un numeero')
+              .required('Seleccione su casa en el mapa y verfique si es correcta'),
+  longitud: yup.number('debe ser un numero')
+                .required('Seleccione su casa en el mapa y verfique si es correcta')
 }).required()
 
 function FormularioHijo() {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
-
+  const [school, setSchool] = useState([]);
   const onSubmit = async (data) => {
-    if(!errors.firstName && !errors.lastName && !errors.sex){
+    if(!errors.firstName && !errors.lastName &&  !errors.latitud && !errors.level && !errors.school){
       try {
-        const response = await fetch('http://localhost:5000/formularioHijo', {
+        const response = await fetch('http://localhost:5000/form_registrar_alumno', {
           method: 'POST',
           credentials: 'include',
           headers: {
@@ -46,7 +52,9 @@ function FormularioHijo() {
           body: JSON.stringify({
             nombre: data.firstName,
             apellido: data.lastName,
-            sexo: data.sex
+            colegio: data.school,
+            latitud : data.latitud,
+            longitud : data.longitud
           }),
         });
   
@@ -73,20 +81,49 @@ function FormularioHijo() {
       }
     }
   };
+  async function pedidoJson(data, jsonData){
+    return new Promise((resolve, reject)=>{
+        try {
+            let elegidos = []
+            for (const colegio of jsonData) {
+                if (data.level === colegio.nivel) {
+                    elegidos.push(colegio);
+                }
+            }
+            resolve(elegidos);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+    async function onChange(data){
+      const response = await fetch('http://localhost:5000/obtener_colegios', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const responseData = await response.json();
 
-  async function requestDataColegio(){
-    /*const response = await fetch('http://localhost:5000/formularioHijo', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nivel: 'k'
-        }),
-      });
-    const dataResponse = await response.json();*/
-  }
+          if(!errors.level){
+              pedidoJson(data,responseData).then((resultado)=>{
+                  setSchool([])
+                  resultado.forEach((colegio)=>{
+                      agregarAlSelectColegiosIda(colegio);
+                  })
+              }).catch((error)=>{
+                  console.error(error)
+              })           
+          }
+    }
+
+  function agregarAlSelectColegiosIda(colegio){
+    setSchool(previus => [
+        ...previus,
+        colegio
+    ])
+}
   const [markerCoordinates, setMarkerCoordinates] = React.useState(null);
 
   const handleMarkerClick = (lat, lng) => {
@@ -97,7 +134,7 @@ function FormularioHijo() {
       <HPadre/>
       <FormContainerH>
         
-        <form onSubmit={handleSubmit(onSubmit)} id='formH'>
+        <form onSubmit={handleSubmit(onSubmit) } id='formH' onChange={handleSubmit(onChange)}>
           <h1>FORMULARIO PARA HIJO</h1>
           <label>Nombre:</label>
           <input
@@ -115,22 +152,12 @@ function FormularioHijo() {
             {...register("lastName")}
           />
           <p className='spanA'>{errors.lastName?.message}</p>  
-
-          <label >Sexo:</label>
-          <select
-            className="select-customizado"
-            {...register("sex")}>
-              <option >--------</option>
-              <option value="M">Masculino</option>
-              <option value="F">Femenino</option>
-          </select>
-          <p className='spanA'>{errors.sex?.message}</p>
           <label>Nivel que Cursa el Estudiante:</label>
           <select 
             className="select-customizado"
-            onChange={requestDataColegio()}
+            
             {...register("level")}>
-              <option >--------</option>
+              <option >------------------</option>
               <option value="Secundaria">Secundaria</option>
               <option value="Primaria">Primaria</option>
               <option value="Kinder">Kinder</option>
@@ -140,18 +167,24 @@ function FormularioHijo() {
           <select 
             className="select-customizado"
             {...register("school")}>
-              <option >--------</option>
+              <option >------------------</option>
+              {school.map((colegio) => (
+                <option key={colegio.nombre} value={colegio.nombre}>{colegio.nombre}</option>
+              ))}
           </select>
           <p className='spanA'>{errors.school?.message}</p>
           <MapsF onMarkerClick={handleMarkerClick}/>
           <input 
             type="text" 
             value={markerCoordinates != null ? markerCoordinates.lat : null} 
+            {...register('latitud')}
           />
           <input 
             type="text" 
             value={markerCoordinates != null ? markerCoordinates.lng : null} 
+            {...register('longitud')}  
           />
+          <p className='spanA'>{errors.latitud?.message}</p>
           <button type='submit' id='button100'>Agregar Hijo</button>
         </form>
         

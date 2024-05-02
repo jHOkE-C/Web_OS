@@ -31,7 +31,6 @@ function MapsForm({ onMarkerClick }) {
   // Hook for clicking on a marker to show an active marker
   const [activeMarker, setActiveMarker] = React.useState(null);
 
-  console.log(activeMarker);
 
   // Function when clicking on the MAP
   const mapClicked = (e) => {
@@ -60,7 +59,6 @@ function MapsForm({ onMarkerClick }) {
       return;
     }
     // setA;
-    console.log(key);
     setActiveMarker(key);
     
   };
