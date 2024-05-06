@@ -22,6 +22,41 @@ def obtener_colegios():
         return jsonify({'mensaje': f'Error al obtener la información de los colegios: {str(e)}'}), 500
 
 
+@form_bp.route('/obtener_hijos', methods=['GET'])
+def obtener_hijos():
+    try:
+        if 'padre_id' in session:
+            usuario_id = session['padre_id']
+            
+
+            hijos = Estudiante.select().where(Estudiante.padre_id == usuario_id)
+            
+
+            hijos_data = [{
+                'nombre': hijo.nombre,
+                'apellido': hijo.apellido,
+                'sexo': hijo.sexo,
+                'foto': hijo.foto, 
+                'aceptado': hijo.aceptado,
+                'colegio': hijo.colegio.nombre if hijo.colegio else None,  # Assuming Colegio has a nombre field
+                'coordenadas': {
+                    'latitud': hijo.coordenadas.latitud if hijo.coordenadas else None,
+                    'longitud': hijo.coordenadas.longitud if hijo.coordenadas else None
+                }
+            } for hijo in hijos]
+            
+            # Return the data as JSON
+            return jsonify(hijos_data)
+            
+    except Exception as e:
+        # Handle exceptions appropriately
+        print(e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+
+
+
+
+
 @form_bp.route('/form_registrar_alumno', methods=['POST'])
 def guardarAlumno():
     try:
