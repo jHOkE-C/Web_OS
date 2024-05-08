@@ -11,7 +11,7 @@ function Contacto() {
       </div>
       <div>
         {/* Espacio para la imagen del código QR de contacto */}
-        <img src="C:\Users\papat\Documents\GitHub\AstreaTransport\frontend\src\img\whats" alt="Código QR de contacto" />
+        <img src="C:\Users\papat\Documents\GitHub\AstreaTransport\frontend\src\img\whatsg" alt="Código QR de contacto" />
       </div>
       <div>
         {/* Enlace a la página de Facebook */}
