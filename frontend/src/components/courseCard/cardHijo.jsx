@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ImgEdit from '../../assents/img/edit.png'
 import { Navigate, useNavigate } from "react-router-dom";
-
+import SinFoto from '../../assents/img/sinFoto.jpg'
 function CardHijo({ title, ide}) {
     let navigate = useNavigate()
   function nav(){
@@ -13,7 +13,7 @@ function CardHijo({ title, ide}) {
   return (
     <ContainerCard>
         <div className='card' >
-            <h3 className='card__img'>{ide}</h3>
+            <img src={SinFoto} alt="" className='card__fotoChico'/>
             <p className='card__title'>{title}</p>
             <div className='cardFondo'>
                 <button type='button' className='cardFondo__edit' onClick={nav}>
@@ -43,6 +43,11 @@ const ContainerCard = styled.div`
         background-color: #C7CAB6;
         border-radius: 1vw;
         box-shadow: 5px 5px 10px;
+    }
+    .card__fotoChico{
+        margin-top: 4%;
+        border-radius: 5%;
+        height: 70%;
     }
     .cardFondo{
         border-radius: 1vw;

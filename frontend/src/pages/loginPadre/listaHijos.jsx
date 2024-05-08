@@ -3,17 +3,17 @@ import {Link}from 'react-router-dom'
 import styled from 'styled-components';
 import { ReactComponent as ArrowLeft } from '../../assents/svg/left.svg';
 import { ReactComponent as ArrowRight } from '../../assents/svg/right.svg';
-import CardsCursos from '../../components/courseCard/cardHijo';
+import CardsHijos from '../../components/courseCard/cardHijo';
 import HPadre from '../../components/loginPadre/headerPadre'
 function ListaHijos() {
-  const [cursos, setCursos] = useState([]);
+  const [Hijos, setHijos] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    peticionDocenteCursosCreados();
+    peticionDocenteHijosCreados();
   }, []);
 
-  const peticionDocenteCursosCreados = () => {
+  const peticionDocenteHijosCreados = () => {
     fetch('http://localhost:5000/obtener_hijos', {
       method: 'GET',
       credentials: 'include'
@@ -25,18 +25,18 @@ function ListaHijos() {
         return res.json();
       })
       .then((data) => {
-        setCursos(data);
+        setHijos(data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
   };
 
-  const renderCursos = () => {
+  const renderHijos = () => {
     const startIndex = currentPage * 8;
     const endIndex = startIndex + 8;
-    return cursos.slice(startIndex, endIndex).map((curso) => (
-      <CardsCursos key={curso.idCurso} title={curso.nombre} ide={curso.idCurso} />
+    return Hijos.slice(startIndex, endIndex).map((curso) => (
+      <CardsHijos key={curso.idCurso} title={curso.nombre} ide={curso.idCurso}  />
     ));
   };
 
@@ -54,7 +54,7 @@ function ListaHijos() {
       <ListaHijosContainer>
         <Link to='/FormHijos' className='buttonN'>AGREGAR HIJO +</Link>
         <br />
-        {renderCursos()}
+        {renderHijos()}
         <div className='arrows'>
           <button className='arrows__flecha' onClick={goToPreviousPage}>
             <ArrowLeft className='home__icon' />
