@@ -29,9 +29,9 @@ const schema = yup.object({
   */
   school: yup.string(),
   
-  latitud: yup.number('debe ser un numeero')
+  latitud: yup.String('debe ser un numeero')
               .required('Seleccione su casa en el mapa y verfique si es correcta'),
-  longitud: yup.number('debe ser un numero')
+  longitud: yup.String('debe ser un numero')
                 .required('Seleccione su casa en el mapa y verfique si es correcta')
 }).required()
 
@@ -178,12 +178,12 @@ function FormularioHijo() {
           <MapsF onMarkerClick={handleMarkerClick}/>
           <input 
             type="text" 
-            value={markerCoordinates != null ? markerCoordinates.lat : 0} 
+            value={markerCoordinates != null ? 'markerCoordinates.lat' : '0'} 
             {...register('latitud')}
           />
           <input 
             type="text" 
-            value={markerCoordinates != null ? markerCoordinates.lng : 0} 
+            value={markerCoordinates != null ? (markerCoordinates.lng).toString : '0'} 
             {...register('longitud')}  
           />
           <p className='spanA'>{errors.latitud?.message}</p>
