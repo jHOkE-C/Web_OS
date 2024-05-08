@@ -1,8 +1,9 @@
 import React from 'react';
-
+import Header from '../../components/header';
 function AcercaDeNosotros() {
   return (
     <div>
+      <Header />
       <h2>Acerca de ASTREA transporte</h2>
       <p>ASTREA transporte es una empresa dedicada al transporte escolar privado en la ciudad de Cochabamba, Bolivia. Nos enorgullecemos de ofrecer un servicio seguro y confiable para estudiantes de todas las edades.</p>
       

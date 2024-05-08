@@ -81,8 +81,7 @@ function MapsForm({ estu }) {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={12}
-          onClick={mapClicked}
-      >
+          onClick={mapClicked}>
         {location.markers.map((markers, key) => (
           <Marker
             key={key}
@@ -101,8 +100,7 @@ function MapsForm({ estu }) {
               </InfoWindow>
             ) : null}
           </Marker>
-        ))}
-        <></>
+        ))}<></>
       </GoogleMap>
     </MapsContainer>
   ) : <></>

@@ -1,5 +1,5 @@
 INSTALAR :
-instalar python y pip
+    instalar python y pip
 
 -flask 
     pip install -U Flask

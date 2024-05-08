@@ -166,6 +166,7 @@ const Login_container_client = styled.nav`
         align-items: center;
         align-content: center;
         justify-content: center;
+        border: 1px solid #636363;
     }
     #login_title{
         display: inline;

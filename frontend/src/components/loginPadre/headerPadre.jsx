@@ -23,15 +23,16 @@ function headerPadre() {
 
   return (
     <HeaderPadreContainer>
+      
       <header id="headerCss">  
         <div id="logo">
           <h1 id='h4_especial'>ASTREA</h1>
         </div>
         <div id="navegation">
-          <Link to="/" className='linksHeader'>Inicio</Link>
-          <Link to="/Nosotros" className='linksHeader'>Nosotros</Link>
+          <Link  className='linksHeader'>Inicio</Link>
+          <Link  className='linksHeader'>Nosotros</Link>
           <Link to="/CrearRutas" className='linksHeader'>Contacto</Link>
-          <Link to="/FormHijos" className='linksHeader'>Lista de Hijos</Link>
+          <Link to="/ListaHijos" className='linksHeader'>Lista de Hijos</Link>
           <Link to="/Perfil" className="buttonN">Perfil</Link>
           <Link to="/" className='buttonN' onClick={salir}>Salir</Link>
         </div>
