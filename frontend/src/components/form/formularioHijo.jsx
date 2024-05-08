@@ -178,7 +178,7 @@ function FormularioHijo() {
           <MapsF onMarkerClick={handleMarkerClick}/>
           <input 
             type="text" 
-            value={markerCoordinates != null ? 'markerCoordinates.lat' : '0'} 
+            value={markerCoordinates != null ? (markerCoordinates.lat).toString : '0'} 
             {...register('latitud')}
           />
           <input 
