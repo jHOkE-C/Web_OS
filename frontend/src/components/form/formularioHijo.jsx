@@ -29,9 +29,9 @@ const schema = yup.object({
   */
   school: yup.string(),
   
-  latitud: yup.String('debe ser un numeero')
+  latitud: yup.string('debe ser un numeero')
               .required('Seleccione su casa en el mapa y verfique si es correcta'),
-  longitud: yup.String('debe ser un numero')
+  longitud: yup.string('debe ser un numero')
                 .required('Seleccione su casa en el mapa y verfique si es correcta')
 }).required()
 
