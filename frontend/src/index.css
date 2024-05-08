@@ -47,5 +47,28 @@ body{
   width: calc(100vw - (100vw - 100%)); /* Esto tendrá en cuenta el ancho de la barra de desplazamiento */
 }
 
+.contacto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start; /* Alinea los elementos al inicio del contenedor */
+  padding: 20px;
+}
 
+.contacto-item {
+  flex-basis: 45%;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
+.contacto-item a {
+  display: block; /* Hace que el enlace ocupe todo el ancho disponible */
+  color: #007bff; /* Color azul típico de los enlaces */
+  text-decoration: underline; /* Subraya el enlace */
+}
+
+.contacto-item img {
+  width: 80px; /* Ancho de 80px */
+  height: 80px; /* Alto de 80px */
+  margin-top: 10px; /* Añade espacio entre el texto y la imagen */
+}
