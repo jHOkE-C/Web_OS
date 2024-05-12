@@ -1,36 +1,58 @@
-import React, { useEffect, useState } from 'react';
-
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import React, { useEffect, useState, useRef } from 'react';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 import styled from 'styled-components';
-import { setLocale } from 'yup';
+
 const containerStyle = {
-    width: '153vh',
-    height: '83vh',
-  };
-  
-  const center = {
-    lat: -17.386046076379788,
-    lng: -66.15643099889358, 
-  };
+  width: '153vh',
+  height: '83vh',
+};
+
+const center = {
+  lat: -17.386046076379788,
+  lng: -66.15643099889358,
+};
+
 function MapsForm({ estu }) {
-  const { isLoaded } = useJsApiLoader({
-      id: 'google-map-script',
-      googleMapsApiKey: "AIzaSyBzEYvBtoYPDH1_JX60ILe5xMaCKK2E0ek"
-  })
+  const google = window.google;
+  const [activeMarker, setActiveMarker] = useState(null);
+  const [origin, setOrigin] = useState({
+    id: -1,
+    lat: null,
+    lng: null
+  });
+  const [waypoints, setWaypoints] = useState([]); // Inicializar waypoints como un array vacío
 
+  const [destinationLat, setDestinationLat] = useState(-17.382799241690808);
+  const [destinationLong, setDestinationLong] = useState(-66.15135072793731);
 
-  //Hook for the location per click on the MAP
-  const [location, setLocation] = React.useState({
+  const [directions, setDirections] = useState(null);
+  let count = useRef(0);
+
+  const [location, setLocation] = useState({
     markers: [
       {
-        title: "The marker`s title will appear as a tooltip.",
+        title: "The marker's title will appear as a tooltip.",
         name: "",
         position: { lat: 0, lng: 0 }
       }
     ]
   });
 
+  const directionsCallback = (result, status) => {
+    //console.log('hola');
+    if (status === "OK" && count.current === 0 && origin.lat !== null) {
+      count.current++;
+      setDirections(result);
+    }
+  };
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyASiO50MjnAFfnMLz1hPh8S-rDZy_tzrrw"
+  });
+
   useEffect(() => {
+    //console.log('hola');
     if (estu) {
       setLocation(() => {
         return {
@@ -38,28 +60,43 @@ function MapsForm({ estu }) {
             {
               title: "",
               name: 'hola',
-              position: { lat: 0, lng: 0}
+              position: { lat: 0, lng: 0 }
             }
           ]
         };
       });
-      estu.map(estudiante => mapClicked(estudiante))
+      estu.map(estudiante => mapClicked(estudiante));
     }
   }, [estu]);
-  // Hook for clicking on a marker to show an active marker
-  const [activeMarker, setActiveMarker] = React.useState(null);
 
+  const agregarLista = (markers, key) => {
+    if (origin.id === -1) {
+      setOrigin({
+        id: key,
+        lat: markers.position.lat,
+        lng: markers.position.lng
+      });
+    } else {
+      const newWaypoint = {
+        id: key,
+        lat: markers.position.lat,
+        lng: markers.position.lng
+      };
+      setWaypoints(prevWaypoints => [...prevWaypoints, newWaypoint]); // Agregar nuevo waypoint al array existente
+      console.log(waypoints)
+      count.current--;
+    }
+  };
 
-  // Function when clicking on the MAP
   const mapClicked = (e) => {
     const lat = Number(e.Latitud);
-    const lng = Number (e.Longitud);
-    
+    const lng = Number(e.Longitud);
+
     var markerCoordinate = `lat: ${lat} lng: ${lng}`;
     setLocation((previousState) => {
       return {
         markers: [
-            ...previousState.markers,
+          ...previousState.markers,
           {
             title: "",
             name: markerCoordinate,
@@ -70,24 +107,24 @@ function MapsForm({ estu }) {
     });
   };
 
-  // function when clicking on a marker
   const markerClicked = (markers, key) => {
     setActiveMarker(key);
-    
   };
+
   return isLoaded ? (
     <MapsContainer>
       <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={12}
-          onClick={mapClicked}>
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={12}
+      >
         {location.markers.map((markers, key) => (
           <Marker
             key={key}
             title={markers.title}
             name={markers.name}
             position={markers.position}
+            onClick={() => agregarLista(markers, key)}
             onMouseOver={() => markerClicked(markers, key)}
             onMouseOut={() => setActiveMarker(null)}
           >
@@ -100,16 +137,30 @@ function MapsForm({ estu }) {
               </InfoWindow>
             ) : null}
           </Marker>
-        ))}<></>
+        ))}
+        <DirectionsService
+          options={{
+            origin: new google.maps.LatLng(origin.lat, origin.lng),
+            waypoints: [
+              ...waypoints.map(way => ({
+                location: new google.maps.LatLng(way.lat, way.lng),
+                stopover: true
+              }))
+            ],
+            destination: new google.maps.LatLng(destinationLat, destinationLong),
+            travelMode: "DRIVING",
+          }}
+          callback={directionsCallback}
+        />
+        {directions && <DirectionsRenderer directions={directions} />}
       </GoogleMap>
     </MapsContainer>
-  ) : <></>
+  ) : <></>;
 }
 
-export default React.memo(MapsForm)
+export default React.memo(MapsForm);
 
 const MapsContainer = styled.nav`
   margin-top: 2vh;
   margin-bottom: 3vh;
-  
-`
+`;
