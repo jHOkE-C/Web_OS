@@ -22,6 +22,19 @@ function CrearRutasIda() {
     const [ida, setIda] = useState([]);
     const [estudiantes, setEstudiantes] = useState([]);
 
+    
+    function onChange(data){
+        if(!errors.level){
+            pedidoJson(data).then((resultado)=>{
+                setIda([])
+                resultado.forEach((colegio)=>{
+                    agregarAlSelectColegiosIda(colegio);
+                })
+            }).catch((error)=>{
+                console.error(error)
+            })           
+        }
+    }
     async function pedidoJson(data){
         return new Promise((resolve, reject)=>{
             try {
@@ -37,19 +50,6 @@ function CrearRutasIda() {
             }
         })
     }
-    function onChange(data){
-        if(!errors.level){
-            pedidoJson(data).then((resultado)=>{
-                setIda([])
-                resultado.forEach((colegio)=>{
-                    agregarAlSelectColegiosIda(colegio);
-                })
-            }).catch((error)=>{
-                console.error(error)
-            })           
-        }
-    }
-
     function agregarAlSelectColegiosIda(colegio){
         setIda(previus => [
             ...previus,

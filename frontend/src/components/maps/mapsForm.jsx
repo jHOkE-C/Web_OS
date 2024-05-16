@@ -13,7 +13,7 @@ const containerStyle = {
 function MapsForm({ onMarkerClick }) {
   const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
-      googleMapsApiKey: "AIzaSyBzEYvBtoYPDH1_JX60ILe5xMaCKK2E0ek"
+      googleMapsApiKey: "AIzaSyCB3Y4ahmZI6xhk50XkGE9UtZq5br_im88"
   })
 
 

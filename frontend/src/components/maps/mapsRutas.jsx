@@ -48,7 +48,7 @@ function MapsForm({ estu }) {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyASiO50MjnAFfnMLz1hPh8S-rDZy_tzrrw"
+    googleMapsApiKey: "AIzaSyCB3Y4ahmZI6xhk50XkGE9UtZq5br_im88"
   });
 
   useEffect(() => {
