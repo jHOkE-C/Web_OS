@@ -48,7 +48,7 @@ function MapsForm({ estu }) {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCB3Y4ahmZI6xhk50XkGE9UtZq5br_im88"
+    googleMapsApiKey: "AIzaSyARNEqtuw9Z1JVEorH2FrbdRtxZaUSX95s"
   });
 
   useEffect(() => {
@@ -149,6 +149,7 @@ function MapsForm({ estu }) {
             ],
             destination: new google.maps.LatLng(destinationLat, destinationLong),
             travelMode: "DRIVING",
+            optimizeWaypoints: true
           }}
           callback={directionsCallback}
         />

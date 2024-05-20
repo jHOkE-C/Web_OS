@@ -13,14 +13,14 @@ const containerStyle = {
 function MapsForm({ onMarkerClick }) {
   const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
-      googleMapsApiKey: "AIzaSyCB3Y4ahmZI6xhk50XkGE9UtZq5br_im88"
+      googleMapsApiKey: "AIzaSyARNEqtuw9Z1JVEorH2FrbdRtxZaUSX95s"
   })
 
 
   //Hook for the location per click on the MAP
   const [location, setLocation] = React.useState({
     markers: [
-      {
+      { 
         title: "The marker`s title will appear as a tooltip.",
         name: "",
         position: { lat: 0, lng: 0 }
