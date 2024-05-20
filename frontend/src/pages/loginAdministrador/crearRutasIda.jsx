@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components';
 import HeaderAdmind from '../../components/loginAdmind/headerAdmind'
 import MapsRutas from '../../components/maps/mapsRutas';
@@ -19,10 +19,19 @@ function CrearRutasIda() {
     });
 
     //colegios
+    
     const [ida, setIda] = useState([]);
     const [estudiantes, setEstudiantes] = useState([]);
-
-    
+    const [colegio, setColegio] = useState({Latitud:0,Longitud:0});
+    const [origin, setOrigin] = useState({
+        id: -1,
+        lat: 0,
+        lng: 0
+    });
+    const [waypoints, setWaypoints] = useState([]);
+    const [espejo, setEspejo] = useState([
+        "0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0"
+    ])
     function onChange(data){
         if(!errors.level){
             pedidoJson(data).then((resultado)=>{
@@ -59,6 +68,13 @@ function CrearRutasIda() {
 
     function onChangeCole(colegio){
         setEstudiantes([])
+        let tam = ida.length
+        for (let i = 0; i < tam; i++) {
+            if(ida[i].Colegio===colegio){
+                setColegio(ida[i])
+            }
+        }
+
         pedidoJsonEstu(colegio).then((resultado)=>{
             resultado.forEach((estudiante)=>{
                 handleMarkerClick(estudiante.Latitud, estudiante.Longitud);
@@ -99,6 +115,7 @@ function CrearRutasIda() {
         <ContainerRutasIda>
             <div className='selectIzquierda'>
                 <form className='selectNivel' onChange={handleSubmit(onChange)}>
+                    <label>Nivel Colegio:</label>
                     <select className='selectNivel__ida'
                     {...register("level")}>
                         <option value="n">---------------------------</option>
@@ -109,6 +126,7 @@ function CrearRutasIda() {
                     <p className='spanA'>{errors.level?.message}</p>
                 </form>
                 <form className='selectCole' onChange={e => onChangeCole(e.target.value)}>
+                    <label>Colegios:</label>
                     <select className='selectCole__ida' >
                         <option value="-">---------------------------</option>
                         {ida.map((colegio) => (
@@ -119,14 +137,37 @@ function CrearRutasIda() {
                 </form>
             </div>
 
-            <MapsRutas estu={estudiantes}></MapsRutas>
+            <MapsRutas 
+                estu={estudiantes} 
+                colegio={colegio} 
+                origin={origin} 
+                setOrigin={setOrigin}
+                waypoints = {waypoints}
+                setWaypoints = {setWaypoints}
+                espejo = {espejo}
+                setEspejo = {setEspejo}
+            >
+            </MapsRutas>
 
             <form className='indicePuntosRuta'>
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
+                <label>Punto Inicial</label>
+                <input type="text" value={""+origin.lat+", "+origin.lng}/>
+                <label>Puntos Intermedios</label>
+                <input type="text" value={espejo[0]}/>
+                <input type="text" value={espejo[1]}/>
+                <input type="text" value={espejo[2]}/>
+                <input type="text" value={espejo[3]}/>
+                <input type="text" value={espejo[4]}/>
+                <input type="text" value={espejo[5]}/>
+                <input type="text" value={espejo[6]}/>
+                <input type="text" value={espejo[7]}/>
+                <input type="text" value={espejo[8]}/>
+                <input type="text" value={espejo[9]}/>
+                <input type="text" value={espejo[10]}/>
+                <input type="text" value={espejo[11]}/>
+                <input type="text" value={espejo[12]}/>
+                <label>Colegio</label>
+                <input type="text" value={""+colegio.Latitud+", "+colegio.Longitud}/>
             </form>
         </ContainerRutasIda>
     </Fragment>
