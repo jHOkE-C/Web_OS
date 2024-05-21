@@ -1,14 +1,15 @@
 INSTALAR :
-    instalar python y pip
+instalar python y pip
 
--flask 
-    pip install -U Flask
+-flask
+pip install -U Flask
 
--peewee 
-    pip install peewee
-        python runtests.py
+-peewee
+pip install peewee
+python runtests.py
 -flask_cors
-    pip install -U flask-cors
+pip install -U flask-cors
 
 INICIAR:
 python .\prueba.py
+prueba
