@@ -9,6 +9,8 @@ import FHijos from '../components/form/formularioHijo'
 import CrearRutas from '../pages/loginAdministrador/crearRuta'
 import CrearRutasIda from '../pages/loginAdministrador/crearRutasIda'
 import ListaHijos from '../pages/loginPadre/listaHijos'
+import LoginAdmind from '../pages/loginAdministrador/loginAdmind'
+import InicioAdmind from '../pages/loginAdministrador/inicioAdmind';
 function navBar() {
   return (
       <Routes>
@@ -21,6 +23,8 @@ function navBar() {
         <Route path="/FormHijos" element={<FHijos/>}/>
         <Route path="/CrearRutas" element={<CrearRutas/>}/>
         <Route path="/CrearRutas/ida" element={<CrearRutasIda/>}/>
+        <Route path="/LoginAdmind" element={<LoginAdmind/>}/>
+        <Route path="/InicioAdmind" element={<InicioAdmind/>}/>
       </Routes>
   )
 }

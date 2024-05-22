@@ -31,7 +31,7 @@ function headerPadre() {
         <div id="navegation">
           <Link  className='linksHeader'>Inicio</Link>
           <Link  className='linksHeader'>Nosotros</Link>
-          <Link to="/CrearRutas" className='linksHeader'>Contacto</Link>
+          <Link  className='linksHeader'>Contacto</Link>
           <Link to="/ListaHijos" className='linksHeader'>Lista de Hijos</Link>
           <Link to="/Perfil" className="buttonN">Perfil</Link>
           <Link to="/" className='buttonN' onClick={salir}>Salir</Link>
