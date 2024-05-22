@@ -54,9 +54,6 @@ def obtener_hijos():
         return jsonify({'error': 'Internal Server Error'}), 500
 
 
-
-
-
 @form_bp.route('/form_registrar_alumno', methods=['POST'])
 def guardarAlumno():
     try:
@@ -92,13 +89,9 @@ def guardarAlumno():
             estudiante = Estudiante.create(
                 nombre=nombre,
                 apellido=apellido,
-<<<<<<< HEAD
                 padre=padre,
                 sexo = '',
                 aceptado = False,  # Relacionar al hijo con el padre
-=======
-                padre=padre,  # Relacionar al hijo con el padre
->>>>>>> 28481cb43e59e4f2e11289a3072ac56da796ef1d
                 colegio=colegio,  # Relacionar al estudiante con el colegio
                 coordenadas=coordenadas  # Relacionar al estudiante con las coordenadas
             )

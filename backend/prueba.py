@@ -1,6 +1,7 @@
 from flask import Flask
 from auth import auth_bp
 from form  import form_bp
+from funciones import funciones_bp
 
 from flask_cors import CORS
 
@@ -12,6 +13,7 @@ CORS(app,supports_credentials=True)
 # Registra el Blueprint en la aplicación Flask
 app.register_blueprint(form_bp)
 app.register_blueprint(auth_bp)
+app.register_blueprint(funciones_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)

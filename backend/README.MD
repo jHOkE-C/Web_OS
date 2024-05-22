@@ -13,3 +13,6 @@ pip install -U flask-cors
 INICIAR:
 python .\prueba.py
 prueba
+
+('yion', '123456');
+('danielea', 'abcdef');
