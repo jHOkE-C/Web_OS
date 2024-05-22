@@ -13,4 +13,10 @@ pip install -U flask-cors
 INICIAR:
 python .\prueba.py
 
+
+CUENTAS PADRES
+1|Juan|Pérez|juanperez@example.com|123456789|contraseña123
+2|María|Gómez|mariagomez@example.com|987654321|password456
+
+CUENTAS ADMIND
 ('yion@gmail.com', '123456')
