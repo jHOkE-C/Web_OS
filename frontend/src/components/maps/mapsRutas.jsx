@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 import styled from 'styled-components';
+import ImgColegio from '../../assents/img/colegio.png'
 
 const containerStyle = {
   width: '153vh',
   height: '83vh',
+  
 };
 
 const center = {
@@ -12,18 +14,15 @@ const center = {
   lng: -66.15643099889358,
 };
 
-function MapsForm({ estu }) {
+function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, espejo, setEspejo }) {
   const google = window.google;
   const [activeMarker, setActiveMarker] = useState(null);
-  const [origin, setOrigin] = useState({
-    id: -1,
-    lat: null,
-    lng: null
-  });
-  const [waypoints, setWaypoints] = useState([]); // Inicializar waypoints como un array vacío
 
-  const [destinationLat, setDestinationLat] = useState(-17.382799241690808);
-  const [destinationLong, setDestinationLong] = useState(-66.15135072793731);
+
+  const [destination, setDestination] = useState({
+    lat:0,
+    lng:0
+  });
 
   const [directions, setDirections] = useState(null);
   let count = useRef(0);
@@ -58,8 +57,8 @@ function MapsForm({ estu }) {
         return {
           markers: [
             {
-              title: "",
-              name: 'hola',
+              name: '',
+              id: -1,
               position: { lat: 0, lng: 0 }
             }
           ]
@@ -67,24 +66,42 @@ function MapsForm({ estu }) {
       });
       estu.map(estudiante => mapClicked(estudiante));
     }
+
+    setWaypoints([])
+    setDestination({
+      lat:colegio.Latitud,
+      lng:colegio.Longitud
+    });
   }, [estu]);
+
+  useEffect(() => {
+    const newEspejo = waypoints.map(waypoint => {
+        return {
+                id:waypoint.id,
+                mensaje:`${waypoint.lat},${waypoint.lng}`
+               }
+      });
+    setEspejo(newEspejo);
+  }, [waypoints]);
 
   const agregarLista = (markers, key) => {
     if (origin.id === -1) {
       setOrigin({
-        id: key,
+        id: markers.id,
         lat: markers.position.lat,
         lng: markers.position.lng
       });
     } else {
-      const newWaypoint = {
-        id: key,
-        lat: markers.position.lat,
-        lng: markers.position.lng
-      };
-      setWaypoints(prevWaypoints => [...prevWaypoints, newWaypoint]); // Agregar nuevo waypoint al array existente
-      console.log(waypoints)
-      count.current--;
+      if(waypoints.length < 13){
+        const newWaypoint = {
+          id: markers.id,
+          lat: markers.position.lat,
+          lng: markers.position.lng
+        };
+        setWaypoints(prevWaypoints => [...prevWaypoints, newWaypoint]); // Agregar nuevo waypoint al array existente
+        count.current--;
+      }
+      //actualizarInterfaz
     }
   };
 
@@ -92,14 +109,13 @@ function MapsForm({ estu }) {
     const lat = Number(e.Latitud);
     const lng = Number(e.Longitud);
 
-    var markerCoordinate = `lat: ${lat} lng: ${lng}`;
     setLocation((previousState) => {
       return {
         markers: [
           ...previousState.markers,
           {
-            title: "",
-            name: markerCoordinate,
+            name: e.nombre,
+            id: e.id,
             position: { lat, lng }
           }
         ]
@@ -117,20 +133,25 @@ function MapsForm({ estu }) {
         mapContainerStyle={containerStyle}
         center={center}
         zoom={12}
-      >
+      > 
+        <Marker
+          icon = {ImgColegio}
+          position={{lat: destination.lat, lng: destination.lng}}
+        >
+          
+        </Marker>
         {location.markers.map((markers, key) => (
           <Marker
             key={key}
-            title={markers.title}
-            name={markers.name}
             position={markers.position}
             onClick={() => agregarLista(markers, key)}
-            onMouseOver={() => markerClicked(markers, key)}
-            onMouseOut={() => setActiveMarker(null)}
+            //onMouseOver={() => markerClicked(markers, key)}
+            //onMouseOut={() => setActiveMarker(null)}
           >
             {activeMarker === key ? (
               <InfoWindow>
                 <div>
+                  <p>{markers.name}</p>
                   <p>lat: {markers.position.lat}</p>
                   <p>log: {markers.position.lng}</p>
                 </div>
@@ -147,7 +168,7 @@ function MapsForm({ estu }) {
                 stopover: true
               }))
             ],
-            destination: new google.maps.LatLng(destinationLat, destinationLong),
+            destination: new google.maps.LatLng(destination.lat, destination.lng),
             travelMode: "DRIVING",
             optimizeWaypoints: true
           }}

@@ -1,12 +1,12 @@
 [
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 1, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:25:03",
     "Apellido Paterno": "QUIROZ",
     "Apellido Materno": "TICONA",
     "Nombre": "BRANDON",
-    "Colegio": "COTAPACHI",
+    "Colegio": "Colegio San Agustin",
     "Curso": "6° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "7:00",
@@ -21,8 +21,8 @@
     "Longitud": -66.14138584931803
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "Ok",
+    "id" : 2, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:30:13",
     "Apellido Paterno": "SANCHEZ",
     "Apellido Materno": "TICONA",
@@ -42,8 +42,8 @@
     "Longitud": -66.15502542859807
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "oK",
+    "id" : 3, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:32:55",
     "Apellido Paterno": "RODRIGUEZ",
     "Apellido Materno": "LIZARAZU",
@@ -63,8 +63,8 @@
     "Longitud": -66.14980694346136
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "OK",
+    "id" : 4, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:36:45",
     "Apellido Paterno": "SEÑA",
     "Apellido Materno": "NN",
@@ -84,8 +84,8 @@
     "Longitud": -66.15153853838372
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 5, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:40:41",
     "Apellido Paterno": "SEÑA",
     "Apellido Materno": "ROCHA",
@@ -105,8 +105,8 @@
     "Longitud": -66.16479235285685
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 6, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:43:01",
     "Apellido Paterno": "SEÑA",
     "Apellido Materno": "ROMERO",
@@ -126,8 +126,8 @@
     "Longitud": -66.1648003994839
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 7, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:45:36",
     "Apellido Paterno": "ZENTENO",
     "Apellido Materno": "AGNE",
@@ -147,8 +147,8 @@
     "Longitud": -66.17296360120304
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 8, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:46:55",
     "Apellido Paterno": "RAMIREZ",
     "Apellido Materno": "CRUZ",
@@ -168,8 +168,8 @@
     "Longitud": -66.17314880167459
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 9, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:48:52",
     "Apellido Paterno": "TELLEZ",
     "Apellido Materno": "VILLAROEL",
@@ -189,8 +189,8 @@
     "Longitud": -66.18462805587801
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 10, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:51:50",
     "Apellido Paterno": "RIOS",
     "Apellido Materno": "ALFARO",
@@ -210,8 +210,8 @@
     "Longitud": -66.18244684920424
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 11, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:55:07",
     "Apellido Paterno": "ALVAREZ",
     "Apellido Materno": "TERRAZAS",
@@ -231,8 +231,8 @@
     "Longitud": -66.17251205904822
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 12, 
+    "aceptado": true,
     "Fecha": "1/5/2024 14:57:46",
     "Apellido Paterno": "CANO",
     "Apellido Materno": "ESCALERA",
@@ -252,8 +252,8 @@
     "Longitud": -66.18046572523154
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 13, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:02:18",
     "Apellido Paterno": "CHOQUE",
     "Apellido Materno": "SUAREZ",
@@ -273,8 +273,8 @@
     "Longitud": -66.19241773701181
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 14, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:04:41",
     "Apellido Paterno": "PEREDO",
     "Apellido Materno": "VILLAROEL",
@@ -294,8 +294,8 @@
     "Longitud": -66.18685219052918
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 15, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:06:32",
     "Apellido Paterno": "JORDAN",
     "Apellido Materno": "VAZQUES",
@@ -315,8 +315,8 @@
     "Longitud": -66.19639299042171
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 16, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:09:06",
     "Apellido Paterno": "LEON",
     "Apellido Materno": "PEREZ",
@@ -336,8 +336,8 @@
     "Longitud": -66.18359106967225
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 17, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:10:54",
     "Apellido Paterno": "TORRICO",
     "Apellido Materno": "LAZARTE",
@@ -357,8 +357,8 @@
     "Longitud": -66.20073408228427
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 18, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:13:12",
     "Apellido Paterno": "CALLISAYA",
     "Apellido Materno": "MONTAÑO",
@@ -378,8 +378,8 @@
     "Longitud": -66.19393714348702
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 19, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:18:48",
     "Apellido Paterno": "TORREZ",
     "Apellido Materno": "DIEZ",
@@ -399,8 +399,8 @@
     "Longitud": -66.17752106851538
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 20, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:21:55",
     "Apellido Paterno": "BOTELLO",
     "Apellido Materno": "ROJAS",
@@ -420,8 +420,8 @@
     "Longitud": -66.19555323821145
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 21, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:33:40",
     "Apellido Paterno": "CANAZA",
     "Apellido Materno": "GARCIA",
@@ -441,8 +441,8 @@
     "Longitud": -66.19998987619695
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 22, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:35:25",
     "Apellido Paterno": "SOLA",
     "Apellido Materno": "ALARCON",
@@ -462,8 +462,8 @@
     "Longitud": -66.18320396284463
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 23, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:37:57",
     "Apellido Paterno": "MONTAÑO",
     "Apellido Materno": "ALVAREZ",
@@ -483,8 +483,8 @@
     "Longitud": -66.15324412656537
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 24, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:40:35",
     "Apellido Paterno": "VARGAS",
     "Apellido Materno": "GUILLEN",
@@ -504,8 +504,8 @@
     "Longitud": -66.16755865512236
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 25, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:45:22",
     "Apellido Paterno": "PASQUIER",
     "Apellido Materno": "PORCEL",
@@ -525,8 +525,8 @@
     "Longitud": -66.15546855411229
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 26, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:48:33",
     "Apellido Paterno": "VALDELOMA",
     "Apellido Materno": "ARTEAGA",
@@ -546,8 +546,8 @@
     "Longitud": -66.19895116297975
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 28, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:50:24",
     "Apellido Paterno": "OLMOS",
     "Apellido Materno": "ZURITA",
@@ -567,8 +567,8 @@
     "Longitud": -66.16228956625821
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 29, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:52:09",
     "Apellido Paterno": "GUIZADA",
     "Apellido Materno": "PATIÑO",
@@ -588,13 +588,13 @@
     "Longitud": -66.16855923055292
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 30, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:55:02",
     "Apellido Paterno": "PEÑALOZA",
     "Apellido Materno": "DEHEZA",
     "Nombre": "JARED",
-    "Colegio": "COTAPACHI",
+    "Colegio": "Colegio San Agustin",
     "Curso": "6° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "7:00",
@@ -609,13 +609,13 @@
     "Longitud": -66.15394259532398
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 31, 
+    "aceptado": true,
     "Fecha": "1/5/2024 15:56:47",
     "Apellido Paterno": "FLORES",
     "Apellido Materno": "ARANIBAR",
     "Nombre": "ROBERT",
-    "Colegio": "COTAPACHI",
+    "Colegio": "Colegio San Agustin",
     "Curso": "6° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "7:00",
@@ -630,8 +630,8 @@
     "Longitud": -66.1538067609884
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 32, 
+    "aceptado": true,
     "Fecha": "1/5/2024 16:04:18",
     "Apellido Paterno": "OJEDA",
     "Apellido Materno": "MOREIRA",
@@ -651,8 +651,8 @@
     "Longitud": -66.14611718223128
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 33, 
+    "aceptado": true,
     "Fecha": "1/5/2024 16:07:45",
     "Apellido Paterno": "FERNANDEZ",
     "Apellido Materno": "FLORES",
@@ -672,8 +672,8 @@
     "Longitud": -66.14675286576781
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 34, 
+    "aceptado": true,
     "Fecha": "1/5/2024 16:10:07",
     "Apellido Paterno": "PEREZ",
     "Apellido Materno": "CARPIO",
@@ -693,8 +693,8 @@
     "Longitud": -66.15553016859802
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 35, 
+    "aceptado": true,
     "Fecha": "1/6/2024 11:36:21",
     "Apellido Paterno": "PRUEBA",
     "Apellido Materno": "DE",
@@ -714,8 +714,8 @@
     "Longitud": -66.21935889387888
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 36, 
+    "aceptado": true,
     "Fecha": "1/6/2024 11:37:28",
     "Apellido Paterno": "PRUEBA DE",
     "Apellido Materno": "EL",
@@ -735,8 +735,8 @@
     "Longitud": ""
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 37, 
+    "aceptado": true,
     "Fecha": "1/6/2024 14:24:45",
     "Apellido Paterno": "NAVIA",
     "Apellido Materno": "ARIAS",
@@ -756,8 +756,8 @@
     "Longitud": -66.17363421867863
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 38, 
+    "aceptado": true,
     "Fecha": "1/6/2024 14:28:09",
     "Apellido Paterno": "MONTENEGRO",
     "Apellido Materno": "VILLAMONTE",
@@ -777,8 +777,8 @@
     "Longitud": -66.1445939540863
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 39, 
+    "aceptado": true,
     "Fecha": "1/6/2024 14:29:01",
     "Apellido Paterno": "JIMENEZ",
     "Apellido Materno": "OLMOS",
@@ -798,13 +798,13 @@
     "Longitud": -66.16680150664716
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 40, 
+    "aceptado": true,
     "Fecha": "1/6/2024 14:56:28",
     "Apellido Paterno": "MURILLO",
     "Apellido Materno": "IPORRE",
     "Nombre": "SOFIA",
-    "Colegio": "San Agustin",
+    "Colegio": "Colegio San Agustin",
     "Curso": "1° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "7:45",
@@ -819,8 +819,8 @@
     "Longitud": -66.14201428141924
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 41, 
+    "aceptado": true,
     "Fecha": "1/6/2024 15:07:06",
     "Apellido Paterno": "PÉREZ",
     "Apellido Materno": "NAVIA",
@@ -840,8 +840,8 @@
     "Longitud": -66.18543326854706
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 42, 
+    "aceptado": true,
     "Fecha": "1/6/2024 16:25:31",
     "Apellido Paterno": "ZELADA",
     "Apellido Materno": "LAZCANO",
@@ -861,13 +861,13 @@
     "Longitud": -66.14717580708911
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 43, 
+    "aceptado": true,
     "Fecha": "1/6/2024 16:56:49",
     "Apellido Paterno": "NOTTA",
     "Apellido Materno": "ACOSTA",
     "Nombre": "VALENTINA CAMILA",
-    "Colegio": "San Agustin",
+    "Colegio": "Colegio San Agustin",
     "Curso": "5° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "8:00",
@@ -882,13 +882,13 @@
     "Longitud": -66.18521471481914
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 44, 
+    "aceptado": true,
     "Fecha": "1/6/2024 17:05:07",
     "Apellido Paterno": "NOTTA",
     "Apellido Materno": "ACOSTA",
     "Nombre": "LUCIANO ANDREAS",
-    "Colegio": "San Agustin",
+    "Colegio": "Colegio San Agustin",
     "Curso": "2° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "8:00",
@@ -903,13 +903,13 @@
     "Longitud": -66.18528162576735
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 45, 
+    "aceptado": true,
     "Fecha": "1/6/2024 17:24:27",
     "Apellido Paterno": "SANCHEZ",
     "Apellido Materno": "CUESTA",
     "Nombre": "RAQUEL",
-    "Colegio": "San Agustin",
+    "Colegio": "Colegio San Agustin",
     "Curso": "5° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "8:00",
@@ -924,8 +924,8 @@
     "Longitud": -66.18528162576735
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 46, 
+    "aceptado": true,
     "Fecha": "1/6/2024 17:34:33",
     "Apellido Paterno": "TORREZ",
     "Apellido Materno": "SOLETO",
@@ -945,8 +945,8 @@
     "Longitud": -66.19742549505057
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 47, 
+    "aceptado": true,
     "Fecha": "1/6/2024 17:38:44",
     "Apellido Paterno": "ALVARADO",
     "Apellido Materno": "CLAROS",
@@ -966,13 +966,13 @@
     "Longitud": -66.19764804840088
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 48, 
+    "aceptado": true,
     "Fecha": "1/6/2024 18:13:50",
     "Apellido Paterno": "ARCE",
     "Apellido Materno": "ARNEZ",
     "Nombre": "RODRIGO",
-    "Colegio": "San Agustin",
+    "Colegio": "Colegio San Agustin",
     "Curso": "6° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "8:00",
@@ -987,13 +987,13 @@
     "Longitud": -66.17921475017738
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 49, 
+    "aceptado": true,
     "Fecha": "1/6/2024 18:23:08",
     "Apellido Paterno": "ZURITA",
     "Apellido Materno": "LOPEZ",
     "Nombre": "RUBEN SANTIAGO",
-    "Colegio": "San Agustin",
+    "Colegio": "Colegio San Agustin",
     "Curso": "5° Secundaria",
     "Nivel": "Secundaria",
     "Entrada": "8:00",
@@ -1008,8 +1008,8 @@
     "Longitud": -66.17577135243738
   },
   {
-    "fecha de inicio": "",
-    "confirmacion": "ok",
+    "id" : 0, 
+    "aceptado": true,
     "Fecha": "1/6/2024 18:39:32",
     "Apellido Paterno": "JAIMES",
     "Apellido Materno": "TERÁN",

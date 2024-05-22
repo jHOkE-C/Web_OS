@@ -1,32 +1,50 @@
 [
   {
-      "Colegio": "COTAPACHI",
+      "Colegio": "Colegio San Agustin",
       "Nivel": "Secundaria",
       "Entrada": "7:00",
-      "Salida": "12:15"
+      "Salida": "12:15",
+      "Latitud": -17.373287425539676,
+      "Longitud": -66.14376577416674
   },
   {
       "Colegio": "Don Bosco Mañana",
       "Nivel": "Secundaria",
       "Entrada": "7:00",
-      "Salida": "12:15"
+      "Salida": "12:15",
+      "Latitud": -17.382731089702478,
+      "Longitud": -66.15148865167876
   },
   {
     "Colegio": "Calvert",
     "Nivel": "Secundaria",
     "Entrada": "8:00",
-    "Salida": "15:00"
+    "Salida": "15:00",
+    "Latitud":-17.37128749116198,
+    "Longitud":-66.13216693220863
   },
   {
     "Colegio": "Don Bosco Mañana",
     "Nivel": "Primaria",
     "Entrada": "7:00",
-    "Salida": "12:15"
+    "Salida": "12:15",
+    "Latitud":-17.382731089702478,
+    "Longitud":-66.15148865167876
   },
   {
     "Colegio": "Kinder Random",
     "Nivel": "Kinder",
     "Entrada": "7:00",
-    "Salida": "12:15"
+    "Salida": "12:15",
+    "Latitud":"1",
+    "Longitud":"1"
+  },
+  {
+    "Colegio": "Jola School",
+    "Nivel": "Primaria",
+    "Entrada": "7:00",
+    "Salida": "12:15",
+    "Latitud":-17.350031170004375,
+    "Longitud":-66.21386129172407 
   }
 ]
