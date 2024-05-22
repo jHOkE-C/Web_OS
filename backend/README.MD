@@ -14,5 +14,5 @@ INICIAR:
 python .\prueba.py
 prueba
 
-('yion', '123456');
-('danielea', 'abcdef');
+('yion@gmail.com', '123456')
+('daniela@gmail.com', 'abcdef')
