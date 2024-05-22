@@ -57,8 +57,8 @@ function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, e
         return {
           markers: [
             {
-              title: "",
-              name: 'hola',
+              name: '',
+              id: -1,
               position: { lat: 0, lng: 0 }
             }
           ]
@@ -75,25 +75,32 @@ function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, e
   }, [estu]);
 
   useEffect(() => {
-    const newEspejo = waypoints.map(waypoint => `${waypoint.lat},${waypoint.lng}`);
+    const newEspejo = waypoints.map(waypoint => {
+        return {
+                id:waypoint.id,
+                mensaje:`${waypoint.lat},${waypoint.lng}`
+               }
+      });
     setEspejo(newEspejo);
   }, [waypoints]);
 
   const agregarLista = (markers, key) => {
     if (origin.id === -1) {
       setOrigin({
-        id: key,
+        id: markers.id,
         lat: markers.position.lat,
         lng: markers.position.lng
       });
     } else {
-      const newWaypoint = {
-        id: key,
-        lat: markers.position.lat,
-        lng: markers.position.lng
-      };
-      setWaypoints(prevWaypoints => [...prevWaypoints, newWaypoint]); // Agregar nuevo waypoint al array existente
-      count.current--;
+      if(waypoints.length < 13){
+        const newWaypoint = {
+          id: markers.id,
+          lat: markers.position.lat,
+          lng: markers.position.lng
+        };
+        setWaypoints(prevWaypoints => [...prevWaypoints, newWaypoint]); // Agregar nuevo waypoint al array existente
+        count.current--;
+      }
       //actualizarInterfaz
     }
   };
@@ -102,14 +109,13 @@ function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, e
     const lat = Number(e.Latitud);
     const lng = Number(e.Longitud);
 
-    var markerCoordinate = `lat: ${lat} lng: ${lng}`;
     setLocation((previousState) => {
       return {
         markers: [
           ...previousState.markers,
           {
-            title: "",
-            name: markerCoordinate,
+            name: e.nombre,
+            id: e.id,
             position: { lat, lng }
           }
         ]
@@ -137,8 +143,6 @@ function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, e
         {location.markers.map((markers, key) => (
           <Marker
             key={key}
-            title={markers.title}
-            name={markers.name}
             position={markers.position}
             onClick={() => agregarLista(markers, key)}
             //onMouseOver={() => markerClicked(markers, key)}
@@ -147,6 +151,7 @@ function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, e
             {activeMarker === key ? (
               <InfoWindow>
                 <div>
+                  <p>{markers.name}</p>
                   <p>lat: {markers.position.lat}</p>
                   <p>log: {markers.position.lng}</p>
                 </div>

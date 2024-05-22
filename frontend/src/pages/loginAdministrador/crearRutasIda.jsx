@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import jsonData from '../../font/colegios.json'
 import jsonEstu from '../../font/mocks_alumnos.json'
+import Swal from 'sweetalert2'
 
 const schema = yup.object({
     level: yup.mixed('Seleccione un nivel').oneOf(['Secundaria', 'Primaria', 'Kinder'])
@@ -30,8 +31,11 @@ function CrearRutasIda() {
     });
     const [waypoints, setWaypoints] = useState([]);
     const [espejo, setEspejo] = useState([
-        "0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0"
-    ])
+        { id: 0, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' },
+        { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' },
+        { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' },
+        { id: -1, mensaje: '0,0' }
+    ]);
     function onChange(data){
         if(!errors.level){
             pedidoJson(data).then((resultado)=>{
@@ -68,16 +72,19 @@ function CrearRutasIda() {
 
     function onChangeCole(colegio){
         setEstudiantes([])
+        //elegir colegio para mandar a el componente map
         let tam = ida.length
         for (let i = 0; i < tam; i++) {
             if(ida[i].Colegio===colegio){
+                console.log(ida[i])
                 setColegio(ida[i])
             }
         }
-
+        //
+        //elegir los estudiantes para mandar al componente map
         pedidoJsonEstu(colegio).then((resultado)=>{
             resultado.forEach((estudiante)=>{
-                handleMarkerClick(estudiante.Latitud, estudiante.Longitud);
+                handleMarkerClick(estudiante.id, estudiante.Nombre, estudiante.Latitud, estudiante.Longitud);
             })
         }).catch((error)=>{
             console.error(error)
@@ -98,17 +105,55 @@ function CrearRutasIda() {
             }
         })
     }
-    //markadorees de google
-    const handleMarkerClick = (lat, lng) => {
+    //markadores de google parra enviar a estudiante como prop a componente map
+    const handleMarkerClick = (id, nombre, lat, lng) => {
         setEstudiantes((previus)=>[
             ...previus,
             {
+                nombre: nombre,
+                id: id,
                 Latitud: lat,
                 Longitud: lng
             }
         ])
     };
-
+    async function onSubmit(e) {
+        try {
+            const response = await fetch('http://localhost:5000/form_registrar_alumno', {
+              method: 'POST',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                destino: colegio.Colegio,
+                waypoints: waypoints,
+                inicio: origin.id
+              }),
+            });
+      
+            const responseData = await response.json();
+      
+            if (response.ok) {
+              Swal.fire({
+                icon: 'success',
+                text: responseData.mensaje,
+                background:'#B4B7A2',
+                confirmButtonColor:'#F57D0D',
+              }).then(() => {
+                window.location.reload();
+              });
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            Swal.fire({
+              icon: 'error',
+              text: 'Hubo un error al procesar la solicitud',
+              background:'#B4B7A2',
+              confirmButtonColor:'#F57D0D',
+            });
+          }
+    }
   return (
     <Fragment>
         <HeaderAdmind></HeaderAdmind>
@@ -149,25 +194,21 @@ function CrearRutasIda() {
             >
             </MapsRutas>
 
-            <form className='indicePuntosRuta'>
+            <form className='indicePuntosRuta' onSubmit={onSubmit}>
                 <label>Punto Inicial</label>
                 <input type="text" value={""+origin.lat+", "+origin.lng}/>
                 <label>Puntos Intermedios</label>
-                <input type="text" value={espejo[0]}/>
-                <input type="text" value={espejo[1]}/>
-                <input type="text" value={espejo[2]}/>
-                <input type="text" value={espejo[3]}/>
-                <input type="text" value={espejo[4]}/>
-                <input type="text" value={espejo[5]}/>
-                <input type="text" value={espejo[6]}/>
-                <input type="text" value={espejo[7]}/>
-                <input type="text" value={espejo[8]}/>
-                <input type="text" value={espejo[9]}/>
-                <input type="text" value={espejo[10]}/>
-                <input type="text" value={espejo[11]}/>
-                <input type="text" value={espejo[12]}/>
+                {espejo.map((item, index) => (
+                    <input
+                        key={index}
+                        type="text"
+                        value={item && item.mensaje ? item.mensaje : 'Undefined mensaje'}
+                        readOnly
+                    />
+                ))}
                 <label>Colegio</label>
                 <input type="text" value={""+colegio.Latitud+", "+colegio.Longitud}/>
+                <button type='submit'>Guardar Ruta</button>
             </form>
         </ContainerRutasIda>
     </Fragment>
