@@ -31,10 +31,7 @@ function CrearRutasIda() {
     });
     const [waypoints, setWaypoints] = useState([]);
     const [espejo, setEspejo] = useState([
-        { id: 0, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' },
-        { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' },
-        { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' }, { id: -1, mensaje: '0,0' },
-        { id: -1, mensaje: '0,0' }
+        { id: 0, mensaje: '0,0' }
     ]);
     function onChange(data){
         if(!errors.level){
