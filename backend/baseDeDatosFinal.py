@@ -99,13 +99,20 @@ class Turno(Model):
 class Ruta(Model):
     nombre = CharField()
     es_de_regreso = BooleanField()  
-    estudiante = ForeignKeyField(Estudiante, backref='rutas', null=True)
     colegio = ForeignKeyField(Colegio, backref='rutas', null=True)
-    turno = ForeignKeyField(Turno, backref='rutas', null=True)  
+    turno = ForeignKeyField(Turno, backref='rutas', null=True)
 
     class Meta:
         database = db
 
+class EstudianteRuta(Model):
+    estudiante = ForeignKeyField(Estudiante)
+    ruta = ForeignKeyField(Ruta)
+
+    class Meta:
+        database = db
+        primary_key = CompositeKey('estudiante', 'ruta')
+
 db.connect()
-db.create_tables([Administrador, Padre, Coordenadas, TipoBus, Conductor, Colegio, Estudiante, Bus, Turno, Ruta])
+db.create_tables([Administrador, Padre, Coordenadas, TipoBus, Conductor, Colegio, Estudiante, Bus, Turno, Ruta,EstudianteRuta])
 db.close()

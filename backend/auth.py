@@ -24,9 +24,9 @@ def login_Padre():
 def logout_padre():
     try:
         # Verifica si el usuario está autenticado como padre
-        if 'usuario_id' in session:
+        if 'padre_id' in session:
             # Elimina la identificación del usuario de la sesión
-            session.pop('usuario_id', None)
+            session.pop('padre_id', None)
             return jsonify({'mensaje': 'Sesión cerrada correctamente'})
         else:
             return jsonify({'mensaje': 'No hay una sesión de padre activa'}), 400

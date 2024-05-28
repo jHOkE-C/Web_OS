@@ -59,8 +59,8 @@ def guardarAlumno():
     try:
         data = request.get_json()
         # Asegurarse de que el usuario esté autenticado
-        if 'usuario_id' in session:
-            usuario_id = session['usuario_id']
+        if 'padre_id' in session:
+            usuario_id = session['padre_id']
 
             # Obtener el usuario padre actual de la base de datos
             padre = Padre.get(Padre.id == usuario_id)
@@ -91,7 +91,7 @@ def guardarAlumno():
                 apellido=apellido,
                 padre=padre,
                 sexo = '',
-                aceptado = False,  # Relacionar al hijo con el padre
+                aceptado = True,  # Relacionar al hijo con el padre
                 colegio=colegio,  # Relacionar al estudiante con el colegio
                 coordenadas=coordenadas  # Relacionar al estudiante con las coordenadas
             )
