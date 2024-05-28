@@ -68,6 +68,7 @@ class Estudiante(Model):
     apellido = CharField()
     sexo = CharField()
     foto = BlobField(null=True)
+    tieneRuta = BooleanField(default=False)
     aceptado = BooleanField()
     padre = ForeignKeyField(Padre, backref='hijos', null=True)  
     colegio = ForeignKeyField(Colegio, backref='estudiantes', null=True)

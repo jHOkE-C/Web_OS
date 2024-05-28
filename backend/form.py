@@ -8,14 +8,13 @@ def obtener_colegios():
     try:
         colegios = Colegio.select()
         colegios_info = [{
+            'id': colegio.id,
             'nombre': colegio.nombre,
             'nivel': colegio.nivel,
             'hora_ingreso': colegio.hora_ingreso.strftime('%H:%M') if colegio.hora_ingreso else None,
             'hora_salida': colegio.hora_salida.strftime('%H:%M') if colegio.hora_salida else None,
-            'coordenadas': {
-                'latitud': colegio.coordenadas.latitud,
-                'longitud': colegio.coordenadas.longitud
-            }
+            'latitud': colegio.coordenadas.latitud,
+            'longitud': colegio.coordenadas.longitud
         } for colegio in colegios]
         return jsonify(colegios_info), 200
     except Exception as e:
@@ -28,21 +27,16 @@ def obtener_hijos():
         if 'padre_id' in session:
             usuario_id = session['padre_id']
             
-
-            hijos = Estudiante.select().where(Estudiante.padre_id == usuario_id)
+            # Filtrar los hijos que tienen tieneRuta igual a False
+            hijos = Estudiante.select().where((Estudiante.padre_id == usuario_id) & (Estudiante.tieneRuta == False))
             
-
             hijos_data = [{
+                'id' : hijo.id,
                 'nombre': hijo.nombre,
                 'apellido': hijo.apellido,
-                'sexo': hijo.sexo,
-                'foto': hijo.foto, 
-                'aceptado': hijo.aceptado,
-                'colegio': hijo.colegio.nombre if hijo.colegio else None,  # Assuming Colegio has a nombre field
-                'coordenadas': {
-                    'latitud': hijo.coordenadas.latitud if hijo.coordenadas else None,
-                    'longitud': hijo.coordenadas.longitud if hijo.coordenadas else None
-                }
+                'colegio': hijo.colegio.nombre if hijo.colegio else None, 
+                'latitud': hijo.coordenadas.latitud if hijo.coordenadas else None,
+                'longitud': hijo.coordenadas.longitud if hijo.coordenadas else None
             } for hijo in hijos]
             
             # Return the data as JSON
@@ -52,6 +46,7 @@ def obtener_hijos():
         # Handle exceptions appropriately
         print(e)
         return jsonify({'error': 'Internal Server Error'}), 500
+
 
 
 @form_bp.route('/form_registrar_alumno', methods=['POST'])

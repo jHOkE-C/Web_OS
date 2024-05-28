@@ -110,13 +110,11 @@ def guardarAlumnos():
     except Exception as e:
         return jsonify({'mensaje': f'Error al registrar los estudiantes: {str(e)}'}), 500
 
+
 @funciones_bp.route('/registrar_ruta', methods=['POST'])
 def registrarRuta():
-    # Obtener los datos de la solicitud POST
     data = request.json
 
-    # Supongamos que los datos esperados son el nombre de la ruta, el estado de regreso, 
-    # una lista de IDs de estudiantes, el ID del colegio y el ID del turno.
     nombre_ruta = data.get('nombre')
     es_de_regreso = data.get('es_de_regreso')
     estudiantes_ids = data.get('estudiantes_ids', [])
@@ -128,42 +126,56 @@ def registrarRuta():
     # Asociar cada estudiante a la ruta usando la tabla de relación EstudianteRuta
     for estudiante_id in estudiantes_ids:
         estudiante_ruta = EstudianteRuta.create(estudiante=estudiante_id, ruta=nueva_ruta)
+        
+        # Actualizar el estado de tieneRuta del estudiante
+        estudiante = Estudiante.get_by_id(estudiante_id)
+        estudiante.tieneRuta = True
+        estudiante.save()  # Guardar el cambio en la base de datos
 
-    # Devolver una respuesta de éxito
     return jsonify({'message': 'Ruta registrada correctamente'}), 200
 
-@funciones_bp.route('/ruta/<int:ruta_id>', methods=['GET'])
-def mostrarRuta(ruta_id):
-    # Obtener la ruta especificada por ruta_id
-    ruta = Ruta.get_or_none(Ruta.id == ruta_id)
 
-    if ruta:
-        # Construir la respuesta que incluye información sobre la ruta y sus estudiantes
-        ruta_info = {
-            'id': ruta.id,
-            'nombre': ruta.nombre,
-            'es_de_regreso': ruta.es_de_regreso,
-            'colegio': {
-                'id': ruta.colegio.id,
-                'nombre': ruta.colegio.nombre
-            },
-            'estudiantes': []
-        }
+# @funciones_bp.route('/ruta/<int:ruta_id>', methods=['GET'])
+# def mostrarRuta(ruta_id):
+#     ruta = Ruta.get_or_none(Ruta.id == ruta_id)
 
-        # Obtener información de cada estudiante asociado a la ruta
-        for estudiante_ruta in EstudianteRuta.select().where(EstudianteRuta.ruta == ruta):
-            estudiante = estudiante_ruta.estudiante
-            estudiante_info = {
-                'id': estudiante.id,
-                'nombre': estudiante.nombre,
-                'apellido': estudiante.apellido,
-                'sexo': estudiante.sexo,
-                'aceptado': estudiante.aceptado,
-            }
-            ruta_info['estudiantes'].append(estudiante_info)
+#     if ruta:
+#         ruta_info = {
+#             'id': ruta.id,
+#             'nombre': ruta.nombre,
+#             'es_de_regreso': ruta.es_de_regreso,
+#             'colegio': {
+#                 'id': ruta.colegio.id,
+#                 'nombre': ruta.colegio.nombre
+#             },
+#             'estudiantes': []
+#         }
 
-        # Devolver la información de la ruta con sus estudiantes y colegio
-        return jsonify({'ruta': ruta_info}), 200
-    else:
-        # Devolver un mensaje de error si la ruta no existe
-        return jsonify({'error': 'La ruta especificada no existe'}), 404
+#         for estudiante_ruta in EstudianteRuta.select().where(EstudianteRuta.ruta == ruta):
+#             estudiante = estudiante_ruta.estudiante
+#             estudiante_info = {
+#                 'nombre': estudiante.nombre,
+#                 'coordenadas': None,  # Actualizar con las coordenadas del estudiante
+#                 'colegio': None  # Actualizar con la información del colegio
+#             }
+
+#             # Obtener las coordenadas del estudiante
+#             if estudiante.coordenadas:
+#                 estudiante_info['coordenadas'] = {
+#                     'latitud': estudiante.coordenadas.latitud,
+#                     'longitud': estudiante.coordenadas.longitud
+#                 }
+
+#             # Obtener la información del colegio del estudiante
+#             if estudiante.colegio:
+#                 estudiante_info['colegio'] = {
+#                     'id': estudiante.colegio.id,
+#                     'nombre': estudiante.colegio.nombre
+#                 }
+
+#             ruta_info['estudiantes'].append(estudiante_info)
+
+#         return jsonify({'ruta': ruta_info}), 200
+#     else:
+#         return jsonify({'error': 'La ruta especificada no existe'}), 404
+
