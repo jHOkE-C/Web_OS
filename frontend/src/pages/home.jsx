@@ -113,6 +113,8 @@ const HomeContainer = styled.nav`
   }
   .reco{
       display: flex;
+      flex-wrap:wrap;
+      position: relative;
       justify-content: center;
       align-items: center;
       gap: calc(2vw + .8em);
@@ -125,7 +127,9 @@ const HomeContainer = styled.nav`
       padding: 0px;
       text-align: center;
       width: 17%;
+      min-width: 250px;
       height: 95%;
+      max-height: 500px;
       border-radius: 15px;
       -webkit-border-radius: 15px;
       -moz-border-radius: 15px;
@@ -180,5 +184,12 @@ const HomeContainer = styled.nav`
   }
   .buttonN:active{
       border: #F57D0D 4px solid;
+  }
+  @media only screen and (max-width: 500px) {
+    #des{
+      position: absolute;
+      top: 270%;
+      width: 100%;
+    }
   }
 `
