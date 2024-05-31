@@ -8,11 +8,13 @@ import HPadre from '../../components/loginPadre/headerPadre'
 function ListaHijos() {
   const [Hijos, setHijos] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-
+  const [esUltimo, setEsUltimo] = useState(false)
   useEffect(() => {
     peticionDocenteHijosCreados();
   }, []);
-
+  useEffect(() => {
+    setEsUltimo((currentPage + 1) * 10 >= Hijos.length);
+  }, [currentPage, Hijos.length]);
   const peticionDocenteHijosCreados = () => {
     fetch('http://localhost:5000/obtener_hijos', {
       method: 'GET',
@@ -33,8 +35,8 @@ function ListaHijos() {
   };
 
   const renderHijos = () => {
-    const startIndex = currentPage * 8;
-    const endIndex = startIndex + 8;
+    const startIndex = currentPage * 10;
+    const endIndex = startIndex + 10;
     return Hijos.slice(startIndex, endIndex).map((curso) => (
       <CardsHijos key={curso.idCurso} title={curso.nombre} ide={curso.idCurso}  />
     ));
@@ -54,14 +56,29 @@ function ListaHijos() {
       <ListaHijosContainer>
         <Link to='/FormHijos' className='buttonN'>AGREGAR HIJO +</Link>
         <br />
-        {renderHijos()}
+        <div className='cards'>
+          {renderHijos()}
+        </div>
         <div className='arrows'>
+          
+          {currentPage===0?
+          <button className='arrows__flecha--apagada' >
+            <ArrowLeft className='home__icon' />
+          </button>
+          :
           <button className='arrows__flecha' onClick={goToPreviousPage}>
             <ArrowLeft className='home__icon' />
           </button>
-          <button className='arrows__flecha' onClick={goToNextPage}>
-            <ArrowRight className='home__icon' />
+          }
+          {esUltimo? 
+          <button className='arrows__flecha--apagada'>
+              <ArrowRight className='home__icon' />
           </button>
+          :
+          <button className='arrows__flecha' onClick={goToNextPage}>
+              <ArrowRight className='home__icon' />
+          </button>
+          } 
         </div>
       </ListaHijosContainer>
     </Fragment>
@@ -71,10 +88,14 @@ function ListaHijos() {
 export default ListaHijos;
 
 const ListaHijosContainer = styled.nav`
-  width: 80vw;
+  width: 100vw;
   position: relative;
-  left: 10%;
   min-height: 80vh;
+  .cards{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+  }
   .arrows {
     display: flex;
     position: relative;
@@ -97,6 +118,14 @@ const ListaHijosContainer = styled.nav`
   .arrows__flecha svg:active {
     fill: white;
   }
+  .arrows__flecha--apagada{
+    background: none;
+    border: NONE;
+  }
+  .arrows__flecha--apagada svg {
+    fill: #aaaaaa;
+ 
+  }
   .buttonN{
     text-decoration: none;
     margin-left: calc(1vw + .1em);;
@@ -112,7 +141,7 @@ const ListaHijosContainer = styled.nav`
       -ms-border-radius: calc(0.4vw + .1em);
       -o-border-radius: calc(0.4vw + .1em);
     font-family: 'ralewayB';
-    font-size: calc(1vw + .1em);
+    font-size: calc(0.1vw + 1rem);
     margin-left: 2vw;
   }
   .buttonN:hover{
@@ -122,5 +151,8 @@ const ListaHijosContainer = styled.nav`
   }
   .buttonN:active{
       border: #F57D0D 4px solid;
+  }
+  @media only screen and (max-width: 500px) {
+    .buttonN{}
   }
 `;

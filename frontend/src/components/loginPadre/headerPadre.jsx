@@ -92,7 +92,7 @@ const HeaderPadreContainer = styled.nav`
     text-decoration: none;
     font-family: 'nunitoN';
     color: #636363;
-    font-size: calc(1vw + .1em);
+    font-size: calc(0.5vw + 0.5rem);
   }
 
   .linksHeader:hover {
@@ -130,7 +130,11 @@ const HeaderPadreContainer = styled.nav`
   .menuButton {
     display: none;
   }
-
+  @media only screen and (max-width: 1140px) {
+    #logo{
+      margin-right: calc(30vw + .7em);
+    }
+  }
   @media only screen and (max-width: 500px) {
     width: 95vw;
 

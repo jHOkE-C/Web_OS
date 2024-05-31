@@ -36,10 +36,8 @@ const ContainerCard = styled.div`
         text-align: center;
         display: inline-block; 
         margin-top: 3%;
-        margin-left: 2.5%;
-        margin-right: 2.5%;
-        width: 15vw;
-        height: 15vw;
+        min-width: calc(1vw + 14rem);
+        height: calc(1vw + 13rem);
         background-color: #C7CAB6;
         border-radius: 1vw;
         box-shadow: 5px 5px 10px;

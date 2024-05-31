@@ -98,6 +98,7 @@ function FormularioHijo() {
     })
 }
     async function onChange(data){
+      console.log(data.target.value)
       const response = await fetch('http://localhost:5000/obtener_colegios', {
             method: 'GET',
             credentials: 'include',
@@ -108,10 +109,12 @@ function FormularioHijo() {
           const responseData = await response.json();
 
           if(!errors.level){
-              pedidoJson(data,responseData).then((resultado)=>{
+              pedidoJson(responseData).then((resultado)=>{
                   setSchool([])
                   resultado.forEach((colegio)=>{
+                    if(colegio.nivel===data.target.value){
                       agregarAlSelectColegiosIda(colegio);
+                    }
                   })
               }).catch((error)=>{
                   console.error(error)
@@ -136,7 +139,7 @@ function FormularioHijo() {
       <HPadre/>
       <FormContainerH>
         
-        <form onSubmit={handleSubmit(onSubmit) } id='formH' onChange={handleSubmit(onChange)}>
+        <form onSubmit={handleSubmit(onSubmit) } id='formH' >
           <h1>FORMULARIO PARA HIJO</h1>
           <label>Nombre:</label>
           <input
@@ -157,8 +160,9 @@ function FormularioHijo() {
           <label>Nivel que Cursa el Estudiante:</label>
           <select 
             className="select-customizado"
-            
-            {...register("level")}>
+            {...register("level", {
+              onChange: (e)=>{onChange(e)}
+            })}>
               <option >------------------</option>
               <option value="Secundaria">Secundaria</option>
               <option value="Primaria">Primaria</option>

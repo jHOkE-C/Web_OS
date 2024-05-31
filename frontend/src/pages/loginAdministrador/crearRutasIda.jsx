@@ -123,7 +123,7 @@ function CrearRutasIda() {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                destino: colegio.Colegio,
+                destino: colegio.id,
                 waypoints: waypoints,
                 inicio: origin.id
               }),
