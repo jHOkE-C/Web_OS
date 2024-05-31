@@ -153,6 +153,11 @@ const ListaHijosContainer = styled.nav`
       border: #F57D0D 4px solid;
   }
   @media only screen and (max-width: 500px) {
-    .buttonN{}
+    
+    .cards{
+      align-content: flex-start;
+      justify-content: center;
+      min-height: 280vh;
+    }
   }
 `;
