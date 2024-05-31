@@ -9,18 +9,12 @@ import jsonData from '../../font/colegios.json'
 import jsonEstu from '../../font/mocks_alumnos.json'
 import Swal from 'sweetalert2'
 
-const schema = yup.object({
-    level: yup.mixed('Seleccione un nivel').oneOf(['Secundaria', 'Primaria', 'Kinder'])
-            .required('Seleccione un nivel')
-  }).required()
   
 function CrearRutasIda() {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(schema),
-    });
 
     //colegios
-    
+    const [allSchools, setAllSchools] = useState([]);
+    const [allStudents, setAllStudents] = useState([]);
     const [ida, setIda] = useState([]);
     const [estudiantes, setEstudiantes] = useState([]);
     const [colegio, setColegio] = useState({Latitud:0,Longitud:0});
@@ -33,32 +27,45 @@ function CrearRutasIda() {
     const [espejo, setEspejo] = useState([
         { id: 0, mensaje: '0,0' }
     ]);
-    function onChange(data){
-        if(!errors.level){
-            pedidoJson(data).then((resultado)=>{
-                setIda([])
-                resultado.forEach((colegio)=>{
-                    agregarAlSelectColegiosIda(colegio);
-                })
-            }).catch((error)=>{
-                console.error(error)
-            })           
-        }
-    }
-    async function pedidoJson(data){
-        return new Promise((resolve, reject)=>{
-            try {
-                let elegidos = []
-                for (const colegio of jsonData) {
-                    if (data.level === colegio.Nivel) {
-                        elegidos.push(colegio);
-                    }
-                }
-                resolve(elegidos);
-            } catch (error) {
-                reject(error);
-            }
+    useEffect(()=>{
+        fetch('http://localhost:5000/obtener_colegios', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(response=>{
+            return response.json();
+        }).then(responseData =>{
+            setAllSchools(responseData)
+            
         })
+
+        fetch('http://localhost:5000/obtener_hijos', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(response=>{
+            return response.json();
+        }).then(responseData =>{
+            setAllStudents(responseData)
+        })
+    },[])
+    useEffect(()=>{
+        console.log(allSchools)
+    },[allSchools])
+    function onChange(data){
+        setIda([])
+        seleccionarColegio(data)
+    }
+    async function seleccionarColegio(data){
+        for (const colegio of allSchools) {
+            if (data === colegio.nivel) {
+                agregarAlSelectColegiosIda(colegio);
+            }
+        }
     }
     function agregarAlSelectColegiosIda(colegio){
         setIda(previus => [
@@ -68,55 +75,40 @@ function CrearRutasIda() {
     }
 
     function onChangeCole(colegio){
-        setEstudiantes([])
-        //elegir colegio para mandar a el componente map
+        console.log(colegio)
         let tam = ida.length
         for (let i = 0; i < tam; i++) {
-            if(ida[i].Colegio===colegio){
+            if(ida[i].nombre===colegio){
                 console.log(ida[i])
                 setColegio(ida[i])
             }
         }
-        //
-        //elegir los estudiantes para mandar al componente map
-        pedidoJsonEstu(colegio).then((resultado)=>{
-            resultado.forEach((estudiante)=>{
-                handleMarkerClick(estudiante.id, estudiante.Nombre, estudiante.Latitud, estudiante.Longitud);
-            })
-        }).catch((error)=>{
-            console.error(error)
-        })     
+        setEstudiantes([])
+        seleccionarEstudiantes(colegio)
     }
-    async function pedidoJsonEstu(colegio){
-        return new Promise((resolve, reject)=>{
-            try {
-                let elegidos = []
-                for (const estudiante of jsonEstu) {
-                    if (colegio === estudiante.Colegio) {
-                        elegidos.push(estudiante);
-                    }
-                }
-                resolve(elegidos);
-            } catch (error) {
-                reject(error);
+    async function seleccionarEstudiantes(colegio){
+        for (const estudiante of allStudents) {
+            console.log(estudiante)
+            if (colegio === estudiante.colegio) {
+                handleMarkerClick(estudiante);
             }
-        })
+        }
     }
     //markadores de google parra enviar a estudiante como prop a componente map
-    const handleMarkerClick = (id, nombre, lat, lng) => {
+    const handleMarkerClick = (estudiante) => {
         setEstudiantes((previus)=>[
             ...previus,
             {
-                nombre: nombre,
-                id: id,
-                Latitud: lat,
-                Longitud: lng
+                nombre: estudiante.nombre,
+                id: estudiante.id,
+                Latitud: estudiante.latitud,
+                Longitud: estudiante.longitud
             }
         ])
     };
     async function onSubmit(e) {
         try {
-            const response = await fetch('http://localhost:5000/form_registrar_alumno', {
+            const response = await fetch('http://localhost:5000/registrar_ruta', {
               method: 'POST',
               credentials: 'include',
               headers: {
@@ -156,26 +148,23 @@ function CrearRutasIda() {
         <HeaderAdmind></HeaderAdmind>
         <ContainerRutasIda>
             <div className='selectIzquierda'>
-                <form className='selectNivel' onChange={handleSubmit(onChange)}>
+                <form className='selectNivel' onChange={e=>onChange(e.target.value)}>
                     <label>Nivel Colegio:</label>
-                    <select className='selectNivel__ida'
-                    {...register("level")}>
+                    <select className='select-customizado'>
                         <option value="n">---------------------------</option>
                         <option value="Secundaria">Secundaria</option>
                         <option value="Primaria">Primaria</option>
                         <option value="Kinder">Kinder</option>
                     </select>
-                    <p className='spanA'>{errors.level?.message}</p>
                 </form>
                 <form className='selectCole' onChange={e => onChangeCole(e.target.value)}>
                     <label>Colegios:</label>
-                    <select className='selectCole__ida' >
+                    <select className='select-customizado' >
                         <option value="-">---------------------------</option>
                         {ida.map((colegio) => (
-                            <option key={colegio.Colegio} value={colegio.Colegio}>{colegio.Colegio}</option>
+                            <option key={colegio.nombre} value={colegio.nombre}>{colegio.nombre}</option>
                         ))}
                     </select>
-                    <span className='spanA'>{errors.school?.message}</span>
                 </form>
             </div>
 
@@ -190,13 +179,13 @@ function CrearRutasIda() {
                 setEspejo = {setEspejo}
             >
             </MapsRutas>
-
             <form className='indicePuntosRuta' onSubmit={onSubmit}>
                 <label>Punto Inicial</label>
-                <input type="text" value={""+origin.lat+", "+origin.lng}/>
+                <input type="text" className='indicePuntosRuta__inputCords' value={""+origin.lat+", "+origin.lng}/>
                 <label>Puntos Intermedios</label>
                 {espejo.map((item, index) => (
                     <input
+                        className='indicePuntosRuta__inputCords'
                         key={index}
                         type="text"
                         value={item && item.mensaje ? item.mensaje : 'Undefined mensaje'}
@@ -204,8 +193,8 @@ function CrearRutasIda() {
                     />
                 ))}
                 <label>Colegio</label>
-                <input type="text" value={""+colegio.Latitud+", "+colegio.Longitud}/>
-                <button type='submit'>Guardar Ruta</button>
+                <input type="text" className='indicePuntosRuta__inputCords' value={""+colegio.latitud+", "+colegio.longitud}/>
+                <button type='submit' className='buttonN'>Guardar Ruta</button>
             </form>
         </ContainerRutasIda>
     </Fragment>
@@ -215,13 +204,48 @@ function CrearRutasIda() {
 export default CrearRutasIda
 const ContainerRutasIda = styled.nav`
     display: flex;
+    .select-customizado {
+    background-color: #f2f2f2;
+    color: #333;
+    border-radius: 0.7vh;
+    font-family: 'nunitoN';
+    font-size: calc(0.1vw + 0.65em);
+    width: 100%;
+    height: 5vh;
+    outline: none;
+  }
+  .select-customizado:active, .select-customizado:focus, .select-customizado:hover {
+    border-color: #636363;
+    box-shadow: 0 0 5px #f2f2f2;
+  }
+  .select-customizado option {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-family: 'nunitoN';
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 8px;
+  }
     .selectIzquierda{
         margin: 1vh;
-        margin-right: 1vw;
-
+    }
+    .indicePuntosRuta__inputCords{
+        display: block;
+        background-color: #f2f2f2;
+        border:none;
+        border: #636363 0.5px solid;
+        width: 100%;
+        height: 4vh;
+        border-radius: 0.7vh;
+        font-family: 'nunitoN';
     }
     .indicePuntosRuta{
+        display: block;
         margin: 1vh;
+    }
+    label{
+        display: block;
     }
     .spanA{
         font-family: 'nunitoN';
@@ -230,4 +254,29 @@ const ContainerRutasIda = styled.nav`
         padding: 0px;
         font-size: calc(0.01vw + 0.8em);
     }
+    .buttonN{
+    border: none;
+    margin-top: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: #F57D0D;
+    color: white;
+    border-radius: calc(0.2vw + .1em);
+      -webkit-border-radius: calc(0.2vw + .1em);
+      -moz-border-radius: calc(0.2vw + .1em);
+      -ms-border-radius: calc(0.2vw + .1em);
+      -o-border-radius: calc(0.2vw + .1em);
+    font-family: 'ralewayB';
+    font-size: calc(1vw + .1em);
+  }
+  .buttonN:hover{
+      background-color:#636363;
+      color: #F57D0D;
+      transition-duration: 200ms;
+  }
+  .buttonN:active{
+      border: #F57D0D 4px solid;
+  }
 `

@@ -69,8 +69,8 @@ function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, e
 
     setWaypoints([])
     setDestination({
-      lat:colegio.Latitud,
-      lng:colegio.Longitud
+      lat:colegio.latitud,
+      lng:colegio.longitud
     });
   }, [estu]);
 

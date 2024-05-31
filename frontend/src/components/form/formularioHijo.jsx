@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import styled from 'styled-components';
 import Swal from 'sweetalert2'
 import HPadre from '../loginPadre/headerPadre'
@@ -40,6 +40,7 @@ function FormularioHijo() {
     resolver: yupResolver(schema),
   });
   const [school, setSchool] = useState([]);
+  const [allSchool, setAllSchool] = useState([]);
   const onSubmit = async (data) => {
     console.log(data)
     if(!errors.firstName && !errors.lastName &&  !errors.latitud && !errors.level && !errors.school){
@@ -82,46 +83,31 @@ function FormularioHijo() {
       }
     }
   };
-  async function pedidoJson(data, jsonData){
-    return new Promise((resolve, reject)=>{
-        try {
-            let elegidos = []
-            for (const colegio of jsonData) {
-                if (data.level === colegio.nivel) {
-                    elegidos.push(colegio);
-                }
-            }
-            resolve(elegidos);
-        } catch (error) {
-            reject(error);
+  function seleccionarColegios(data){
+    for (const colegio of allSchool) {
+        if (data === colegio.nivel) {
+          agregarAlSelectColegiosIda(colegio)
         }
-    })
-}
-    async function onChange(data){
-      console.log(data.target.value)
-      const response = await fetch('http://localhost:5000/obtener_colegios', {
+    }
+  }
+  function onChange(data){
+    setSchool([])
+    seleccionarColegios(data.target.value)
+  }
+  useEffect(()=>{
+    fetch('http://localhost:5000/obtener_colegios', {
             method: 'GET',
             credentials: 'include',
             headers: {
               'Content-Type': 'application/json',
             },
-          });
-          const responseData = await response.json();
-
-          if(!errors.level){
-              pedidoJson(responseData).then((resultado)=>{
-                  setSchool([])
-                  resultado.forEach((colegio)=>{
-                    if(colegio.nivel===data.target.value){
-                      agregarAlSelectColegiosIda(colegio);
-                    }
-                  })
-              }).catch((error)=>{
-                  console.error(error)
-              })           
-          }
-    }
-
+          }).then(response=>{
+            return response.json();
+          }).then(responseData =>{
+            setAllSchool(responseData)
+            console.log(allSchool)
+          })
+  },[])
   function agregarAlSelectColegiosIda(colegio){
     setSchool(previus => [
         ...previus,
