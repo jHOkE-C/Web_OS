@@ -10,7 +10,7 @@ const containerStyle = {
     lat: -17.386046076379788,
     lng: -66.15643099889358, 
   };
-function MapsForm({ onMarkerClick }) {
+function MapsForm({ markerCoordinates, setMarkerCoordinates  }) {
   const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: "AIzaSyARNEqtuw9Z1JVEorH2FrbdRtxZaUSX95s"
@@ -37,7 +37,7 @@ function MapsForm({ onMarkerClick }) {
     const key = Math.round(Math.abs((e.latLng.lat() + e.latLng.lng()) * 10000));
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
-    onMarkerClick(e.latLng.lat(), e.latLng.lng()); 
+    setMarkerCoordinates({lat: e.latLng.lat(), lng: e.latLng.lng()}); 
     var markerCoordinate = `lat: ${lat} lng: ${lng}`;
     setLocation(() => {
       return {

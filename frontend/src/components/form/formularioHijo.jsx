@@ -29,10 +29,8 @@ const schema = yup.object({
   */
   school: yup.string(),
   
-  latitud: yup.string('debe ser un numeero')
-              .required('Seleccione su casa en el mapa y verfique si es correcta'),
-  longitud: yup.string('debe ser un numero')
-                .required('Seleccione su casa en el mapa y verfique si es correcta')
+  latitud: yup.number(),
+  longitud: yup.number()
 }).required()
 
 function FormularioHijo() {
@@ -55,11 +53,13 @@ function FormularioHijo() {
             nombre: data.firstName,
             apellido: data.lastName,
             colegio: data.school,
-            latitud : data.latitud,
-            longitud : data.longitud
+            latitud : data.latitud + '',
+            longitud : data.longitud +''
           }),
         });
-  
+        //habia un error que daba las cordenadas mal por algunos era la conversion de
+        //doublle a string en el input, mejor utilize el concatenador a una cadena vacia
+        //asi no se perdia ya nada de informacion y al fin ya no da error de presicion
         const responseData = await response.json();
   
         if (response.ok) {
@@ -114,12 +114,8 @@ function FormularioHijo() {
         colegio
     ])
 }
-  const [markerCoordinates, setMarkerCoordinates] = React.useState(null);
-
-  const handleMarkerClick = (lat, lng) => {
-    console.log(lat,lng);
-    setMarkerCoordinates({ lat, lng });
-  };
+  const [markerCoordinates, setMarkerCoordinates] = React.useState({ lat:0, lng:0 });
+ 
   return (
     <Fragment>
       <HPadre/>
@@ -165,15 +161,15 @@ function FormularioHijo() {
               ))}
           </select>
           <p className='spanA'>{errors.school?.message}</p>
-          <MapsF onMarkerClick={handleMarkerClick}/>
+          <MapsF markerCoordinates ={ markerCoordinates } setMarkerCoordinates = {setMarkerCoordinates}/>
           <input 
             type="text" 
-            value={markerCoordinates != null ? (markerCoordinates.lat).toString : '0'} 
+            value={markerCoordinates.lat} 
             {...register('latitud')}
           />
           <input 
             type="text" 
-            value={markerCoordinates != null ? (markerCoordinates.lng).toString : '0'} 
+            value={markerCoordinates.lng} 
             {...register('longitud')}  
           />
           <p className='spanA'>{errors.latitud?.message}</p>
