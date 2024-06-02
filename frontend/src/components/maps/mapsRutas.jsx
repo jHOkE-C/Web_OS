@@ -47,7 +47,7 @@ function MapsForm({ estu, colegio, origin, setOrigin, waypoints, setWaypoints, e
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyARNEqtuw9Z1JVEorH2FrbdRtxZaUSX95s"
+    googleMapsApiKey: ""
   });
 
   useEffect(() => {
