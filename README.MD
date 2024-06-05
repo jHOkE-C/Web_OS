@@ -1,6 +1,62 @@
-# Grupo WebOS -> Materia de Programacion Web
--INSTALAR TODO LOS COMPONENTES DEL fronend en la ruta "cd ./frontend/"
-> npm install
-    para mas informacion leer README.MD de frontend
+# ASTREA
 
--INSTALAR TODO PARA EL BACKEND LEER SU README.MD
+Web de Servicio de transporte estudiantil puerta a puerta, desarollado con Python backend, SQLite, ReactJS, los padres podran crearse cuentas y registrar a sus hijos para ser habilidados en las posibles rutas que los administradores creen, los conductores podran ver su ruta y se le dara un google directions de cada punto al que debe ir.
+
+## Tabla de Contenidos
+1. [Requisitos Previos](#requisitos-previos)
+2. [Instalación](#instalación)
+3. [Uso](#uso)
+
+## Requisitos Previos
+
+Lista de las dependencias y software necesario para correr tu proyecto.
+
+- [Node.js](https://nodejs.org/) v14 o superior
+- [Git](https://git-scm.com/)
+- [Python] v3.12.3
+- [pip] v24
+- Tener una key api google con javascript maps y routes activado (https://developers.google.com/maps/documentation/javascript/controls)
+
+
+## Instalación
+
+Pasos detallados sobre cómo instalar y configurar el proyecto.
+
+1. Clona el repositorio:
+    ```bash
+    https://github.com/jHOkE-C/Web_OS.git
+    ```
+2. Navega al directorio del proyecto:
+    ```bash
+    cd Web_Os
+    ```
+3. Navega al directorio del FrontEnd:
+    ```bash
+    cd frontend 
+    ```
+4. Instala las dependencias:
+    ```bash
+    npm install
+    ```
+5. Configura las variables de entorno:
+    - ve a la carpeta frontend/components/mapas
+    - Agrega la api key que tengas
+6. Instalacion dependencias Backend
+    -pip install -U Flask
+    -pip install peewee
+    -pip install -U flask-cors
+
+## Uso
+
+Instrucciones básicas sobre cómo ejecutar el proyecto.
+
+1. Para iniciar la coneccion con la Backend-frontend-BD
+    ```bash
+    python .\prueba.py
+    ```
+2. Para iniciar el servidor de desarrollo:
+    ```bash
+    npm start
+    ```
+3. Abre tu navegador en `http://localhost:3000`
+
