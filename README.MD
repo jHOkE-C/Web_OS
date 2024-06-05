@@ -13,9 +13,9 @@ Lista de las dependencias y software necesario para correr tu proyecto.
 
 - [Node.js](https://nodejs.org/) v14 o superior
 - [Git](https://git-scm.com/)
-- [Python] v3.12.3
-- [pip] v24
-- Tener una key api google con javascript maps y routes activado (https://developers.google.com/maps/documentation/javascript/controls)
+- [Python](https://www.python.org/) v3.12.3
+- [pip](https://www.python.org/)  v24
+- Tener una [API KEY](https://developers.google.com/maps/documentation/javascript/controls) google con javascript maps y routes activado 
 
 
 ## Instalación
