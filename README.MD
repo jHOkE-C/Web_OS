@@ -41,10 +41,15 @@ Pasos detallados sobre cómo instalar y configurar el proyecto.
 5. Configura las variables de entorno:
     - ve a la carpeta frontend/components/mapas
     - Agrega la api key que tengas
-6. Instalacion dependencias Backend
-    -pip install -U Flask
-    -pip install peewee
-    -pip install -U flask-cors
+6. Navega al directorio del backend en el proyecto
+    ```bash
+    cd ..
+    cd backend
+    ```
+7. Instalacion dependencias Backend
+    - pip install -U Flask
+    - pip install peewee
+    - pip install -U flask-cors
 
 ## Uso
 
