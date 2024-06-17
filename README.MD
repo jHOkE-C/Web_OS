@@ -70,8 +70,8 @@ Instrucciones básicas sobre cómo ejecutar el proyecto.
 3. Abre tu navegador en `http://localhost:3000`
 
 ## InstalacionConDocker
-
-1. En la carpeta raiz del proyecto, escribir el siguiente comando:
+1. Tener Docker V26.1.4 instalado 
+2. En la carpeta raiz del proyecto, escribir el siguiente comando:
     ```cmd
     docker compose -d
     ```
