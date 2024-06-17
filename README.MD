@@ -39,8 +39,12 @@ Pasos detallados sobre cómo instalar y configurar el proyecto.
     npm install
     ```
 5. Configura las variables de entorno:
-    - ve a la carpeta frontend/components/mapas
-    - Agrega la api key que tengas
+    - ve a las carpetas marcadas con verde
+    - Agrega la apis keys que tengas en la seccion roja marcada en las imagenes:
+[![Screenshot-2024-06-17-162736.jpg](https://i.postimg.cc/50VD7P5w/Screenshot-2024-06-17-162736.jpg)](https://postimg.cc/PLS6NQRx)
+y la misma en:
+[![Screenshot-2024-06-17-165327.jpg](https://i.postimg.cc/Jn30vdfm/Screenshot-2024-06-17-165327.jpg)](https://postimg.cc/r0mqtgyY)
+    
 6. Navega al directorio del backend en el proyecto
     ```bash
     cd ..
