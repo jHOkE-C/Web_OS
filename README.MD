@@ -40,6 +40,7 @@ Pasos detallados sobre cómo instalar y configurar el proyecto.
     ```
 5. Configura las variables de entorno:
     - ve a la carpeta frontend/components/mapas
+[![Screenshot-2024-06-17-162736.jpg](https://i.postimg.cc/50VD7P5w/Screenshot-2024-06-17-162736.jpg)](https://postimg.cc/PLS6NQRx)
     - Agrega la api key que tengas
 6. Navega al directorio del backend en el proyecto
     ```bash
