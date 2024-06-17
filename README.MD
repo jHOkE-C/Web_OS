@@ -6,7 +6,7 @@ Web de Servicio de transporte estudiantil puerta a puerta, desarollado con Pytho
 1. [Requisitos Previos](#requisitos-previos)
 2. [Instalación](#instalación)
 3. [Uso](#uso)
-4. [Instalacion con Docker](#Instalacion con Docker)
+4. [InstalacionConDocker](#InstalacionConDocker)
 ## Requisitos Previos
 
 Lista de las dependencias y software necesario para correr tu proyecto.
@@ -69,7 +69,7 @@ Instrucciones básicas sobre cómo ejecutar el proyecto.
     ```
 3. Abre tu navegador en `http://localhost:3000`
 
-## Instalacion con Docker
+## InstalacionConDocker
 
 1. En la carpeta raiz del proyecto, escribir el siguiente comando:
     ```cmd
