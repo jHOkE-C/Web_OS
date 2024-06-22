@@ -82,4 +82,5 @@ CUENTAS PADRES
 2|María|Gómez|mariagomez@example.com|987654321|password456
 
 CUENTAS ADMIND 
-('yion@gmail.com', '123456')
+1. ir al link /LoginAdmind
+(usuario: yion@gmail.com, contrasea: 123456)
