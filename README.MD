@@ -83,4 +83,5 @@ CUENTAS PADRES
 
 CUENTAS ADMIND 
 1. ir al link /LoginAdmind
-(usuario: yion@gmail.com, contrasea: 123456)
+(usuario: qwerty123, contrasea: Todoloque1)
+(usuario: asdfgyu, contrasea: porqueASI)
