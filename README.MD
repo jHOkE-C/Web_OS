@@ -7,6 +7,7 @@ Web de Servicio de transporte estudiantil puerta a puerta, desarollado con Pytho
 2. [Instalación](#instalación)
 3. [Uso](#uso)
 4. [InstalacionConDocker](#InstalacionConDocker)
+5. [Cuentas](#Cuentas)
 ## Requisitos Previos
 
 Lista de las dependencias y software necesario para correr tu proyecto.
@@ -75,4 +76,10 @@ Instrucciones básicas sobre cómo ejecutar el proyecto.
     ```cmd
     docker compose -d
     ```
+## Cuentas
+CUENTAS PADRES 
+1|Juan|Pérez|juanperez@example.com|123456789|contraseña123
+2|María|Gómez|mariagomez@example.com|987654321|password456
 
+CUENTAS ADMIND 
+('yion@gmail.com', '123456')
